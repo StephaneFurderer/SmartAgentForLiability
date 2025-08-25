@@ -1,0 +1,2 @@
+claim_number,model_paid_prob,model_closed_prob,model_denied_prob,model_confidence,rep_paid_prob,rep_closed_prob,rep_denied_prob,rep_confidence,thought_process,rep_name,timestamp,custom_factors
+CLM16659908,0.67,0.268,0.061,0.75,1.0,0.0,0.0,0.0,we received new info from company ABC and know we will have to pay at least $500k for this claim in the next 3 months,Steph,2025-08-25 15:31:24,intuition from court

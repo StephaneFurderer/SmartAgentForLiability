@@ -100,42 +100,76 @@ class NotesReviewerAgent:
     
     def import_claim_notes(self) -> pd.DataFrame:
         """
-        Import claim-specific notes from claim_notes.csv file.
+        Import claim-specific notes from both claim_notes.csv and high_risk_claim_notes.csv files.
         
         Returns:
-            pd.DataFrame: DataFrame containing the claim notes data
+            pd.DataFrame: DataFrame containing the combined claim notes data
         """
-        claim_notes_file = os.path.join(self.data_dir, "claim_notes.csv")
-        if not os.path.exists(claim_notes_file):
-            print(f"Claim notes file not found at: {claim_notes_file}")
-            return pd.DataFrame()
+        all_notes = []
         
-        try:
-            # Read claim notes CSV
-            df = pd.read_csv(claim_notes_file)
-            
-            # Convert dateNote to datetime
-            df['dateNote'] = pd.to_datetime(df['dateNote'], errors='coerce')
-            
-            # Rename columns to match existing structure for compatibility
-            df = df.rename(columns={
-                'dateNote': 'whenadded',
-                'note': 'note',
-                'clmNum': 'clmNum'
-            })
-            
-            # Add note length and word count for consistency
-            df['note_length'] = df['note'].str.len()
-            df['note_word_count'] = df['note'].str.split().str.len()
+        # Import CRITICAL claim notes
+        claim_notes_file = os.path.join(self.data_dir, "claim_notes.csv")
+        if os.path.exists(claim_notes_file):
+            try:
+                df = pd.read_csv(claim_notes_file)
+                df['dateNote'] = pd.to_datetime(df['dateNote'], errors='coerce')
+                
+                # Rename columns to match existing structure for compatibility
+                df = df.rename(columns={
+                    'dateNote': 'whenadded',
+                    'note': 'note',
+                    'clmNum': 'clmNum'
+                })
+                
+                # Add note length and word count for consistency
+                df['note_length'] = df['note'].str.len()
+                df['note_word_count'] = df['note'].str.split().str.len()
+                
+                # Add source identifier
+                df['note_source'] = 'CRITICAL'
+                
+                all_notes.append(df)
+                print(f"Successfully imported {len(df)} CRITICAL claim notes from CSV")
+            except Exception as e:
+                print(f"Error importing CRITICAL claim notes: {e}")
+        
+        # Import HIGH risk claim notes
+        high_risk_notes_file = os.path.join(self.data_dir, "high_risk_claim_notes.csv")
+        if os.path.exists(high_risk_notes_file):
+            try:
+                df = pd.read_csv(high_risk_notes_file)
+                df['dateNote'] = pd.to_datetime(df['dateNote'], errors='coerce')
+                
+                # Rename columns to match existing structure for compatibility
+                df = df.rename(columns={
+                    'dateNote': 'whenadded',
+                    'note': 'note',
+                    'clmNum': 'clmNum'
+                })
+                
+                # Add note length and word count for consistency
+                df['note_length'] = df['note'].str.len()
+                df['note_word_count'] = df['note'].str.split().str.len()
+                
+                # Add source identifier
+                df['note_source'] = 'HIGH'
+                
+                all_notes.append(df)
+                print(f"Successfully imported {len(df)} HIGH risk claim notes from CSV")
+            except Exception as e:
+                print(f"Error importing HIGH risk claim notes: {e}")
+        
+        if len(all_notes) > 0:
+            # Combine all notes
+            combined_df = pd.concat(all_notes, ignore_index=True)
             
             # Sort by date
-            df = df.sort_values(['clmNum', 'whenadded'])
+            combined_df = combined_df.sort_values(['clmNum', 'whenadded'])
             
-            print(f"Successfully imported {len(df)} claim notes from CSV")
-            return df
-            
-        except Exception as e:
-            print(f"Error importing claim notes: {e}")
+            print(f"Total combined notes: {len(combined_df)}")
+            return combined_df
+        else:
+            print("No claim notes files found")
             return pd.DataFrame()
     
     def get_notes_by_claim(self, clm_num: str) -> pd.DataFrame:
@@ -479,6 +513,7 @@ Please provide a clear, accurate answer based only on the information in these n
     def get_claims_summary_table(self) -> pd.DataFrame:
         """
         Get a summary table of all claims with their current status, reserve amounts, and key dates.
+        Combines CRITICAL and HIGH risk claims from multiple CSV files.
         
         Returns:
             pd.DataFrame: Summary table with claim information
@@ -487,17 +522,40 @@ Please provide a clear, accurate answer based only on the information in these n
             raise ValueError("No notes data loaded. Call import_notes() first.")
         
         try:
-            # Try to load claims data if available
-            claims_file = os.path.join(self.data_dir, "critical_claims.csv")
-            if os.path.exists(claims_file):
-                claims_df = pd.read_csv(claims_file)
-                claims_df['datetxn'] = pd.to_datetime(claims_df['datetxn'])
-                claims_df['dateReceived'] = pd.to_datetime(claims_df['dateReceived'])
-                claims_df['dateCompleted'] = pd.to_datetime(claims_df['dateCompleted'])
-                claims_df['dateReopened'] = pd.to_datetime(claims_df['dateReopened'])
-                claims_df = claims_df.sort_values(['risk_level','clmNum','datetxn'])
+            all_claims = []
+            
+            # Load CRITICAL claims
+            critical_claims_file = os.path.join(self.data_dir, "critical_claims.csv")
+            if os.path.exists(critical_claims_file):
+                critical_df = pd.read_csv(critical_claims_file)
+                critical_df['datetxn'] = pd.to_datetime(critical_df['datetxn'])
+                critical_df['dateReceived'] = pd.to_datetime(critical_df['dateReceived'])
+                critical_df['dateCompleted'] = pd.to_datetime(critical_df['dateCompleted'])
+                critical_df['dateReopened'] = pd.to_datetime(critical_df['dateReopened'])
+                all_claims.append(critical_df)
+                print(f"Loaded {len(critical_df)} CRITICAL claim transactions")
+            
+            # Load HIGH risk claims
+            high_risk_claims_file = os.path.join(self.data_dir, "high_risk_claims.csv")
+            if os.path.exists(high_risk_claims_file):
+                high_risk_df = pd.read_csv(high_risk_claims_file)
+                high_risk_df['datetxn'] = pd.to_datetime(high_risk_df['datetxn'])
+                
+                # For HIGH risk claims, we need to create dateReceived from the first transaction
+                high_risk_df['dateReceived'] = high_risk_df.groupby('clmNum')['datetxn'].transform('min')
+                high_risk_df['dateCompleted'] = pd.NaT  # HIGH risk claims are still open
+                high_risk_df['dateReopened'] = pd.NaT   # HIGH risk claims are not reopened
+                
+                all_claims.append(high_risk_df)
+                print(f"Loaded {len(high_risk_df)} HIGH risk claim transactions")
+            
+            if len(all_claims) > 0:
+                # Combine all claims
+                combined_claims = pd.concat(all_claims, ignore_index=True)
+                combined_claims = combined_claims.sort_values(['risk_level', 'clmNum', 'datetxn'])
+                
                 # Get the latest transaction for each claim
-                latest_transactions = claims_df.groupby(['risk_level','clmNum']).agg({
+                latest_transactions = combined_claims.groupby(['risk_level', 'clmNum']).agg({
                     'clmStatus': 'last',
                     'reserve': 'last',
                     'dateReceived': 'first',
@@ -515,6 +573,9 @@ Please provide a clear, accurate answer based only on the information in these n
                 # Fill NaN values appropriately
                 latest_transactions['dateCompleted'] = latest_transactions['dateCompleted'].fillna(pd.NaT)
                 latest_transactions['dateReopened'] = latest_transactions['dateReopened'].fillna(pd.NaT)
+                
+                print(f"Total claims in summary: {len(latest_transactions)}")
+                print(f"Risk level breakdown: {latest_transactions['risk_level'].value_counts().to_dict()}")
                 
                 return latest_transactions
             else:

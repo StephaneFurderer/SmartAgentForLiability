@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 from notes_reviewer_agent import NotesReviewerAgent
+from claim_status_predictor import ClaimStatusPredictor
+from feedback_storage import FeedbackStorage
+from general_claims_agent import GeneralClaimsAgent
 import os
+from datetime import datetime
 
 # Page configuration
 st.set_page_config(
@@ -36,6 +40,36 @@ def get_notes_agent():
         )
     except Exception as e:
         st.error(f"Error initializing agent: {e}")
+        return None
+
+# Initialize the claim status predictor
+@st.cache_resource
+def get_claim_predictor():
+    """Initialize the claim status predictor"""
+    try:
+        return ClaimStatusPredictor()
+    except Exception as e:
+        st.error(f"Error initializing claim predictor: {e}")
+        return None
+
+# Initialize the feedback storage
+@st.cache_resource
+def get_feedback_storage():
+    """Initialize the feedback storage system"""
+    try:
+        return FeedbackStorage()
+    except Exception as e:
+        st.error(f"Error initializing feedback storage: {e}")
+        return None
+
+# Initialize the general claims agent
+@st.cache_resource
+def get_general_agent():
+    """Initialize the general claims agent for portfolio-wide analysis"""
+    try:
+        return GeneralClaimsAgent()
+    except Exception as e:
+        st.error(f"Error initializing general agent: {e}")
         return None
 
 # Cache claim summaries
@@ -194,150 +228,716 @@ def main():
         st.info("Then restart the app.")
         return
     
-    try:
-        # Import notes data
-        notes_df = agent.import_notes()
+    
+    notes_df = agent.import_notes()
+    
+    with st.sidebar:
+        st.header("📊 Data Summary")
+    
+        summary = agent.get_notes_summary()
+        st.metric("Total Notes", summary['total_notes'])
+        st.metric("Unique Claims", summary['unique_claims'])
         
-        with st.sidebar:
-            st.header("📊 Data Summary")
-        
-            summary = agent.get_notes_summary()
-            st.metric("Total Notes", summary['total_notes'])
-            st.metric("Unique Claims", summary['unique_claims'])
-            
-            st.markdown("---")
-            st.markdown("**Date Range:**")
-            st.write(f"From: {summary['date_range']['earliest'].strftime('%Y-%m-%d')}")
-            st.write(f"To: {summary['date_range']['latest'].strftime('%Y-%m-%d')}")
-            
-            st.markdown("---")
-            st.markdown("**Note Statistics:**")
-            st.write(f"Avg Length: {summary['note_length_stats']['mean']:.1f} chars")
-            st.write(f"Avg Words: {summary['word_count_stats']['mean']:.1f}")
-        
-        # Claims Summary Table
         st.markdown("---")
-        st.markdown("**📋 Claims Summary Table**")
+        st.markdown("**Date Range:**")
+        st.write(f"From: {summary['date_range']['earliest'].strftime('%Y-%m-%d')}")
+        st.write(f"To: {summary['date_range']['latest'].strftime('%Y-%m-%d')}")
         
-        try:
-            # Get all claims with their current status and amounts
-            claims_summary = agent.get_claims_summary_table()
+        st.markdown("---")
+        st.markdown("**Note Statistics:**")
+        st.write(f"Avg Length: {summary['note_length_stats']['mean']:.1f} chars")
+        st.write(f"Avg Words: {summary['word_count_stats']['mean']:.1f}")
+        
+        # Feedback Summary
+        st.markdown("---")
+        st.markdown("**🔮 Feedback Summary**")
+        
+        feedback_storage = get_feedback_storage()
+        if feedback_storage:
+            feedback_summary = feedback_storage.get_feedback_summary()
             
-            if len(claims_summary) > 0:
-                # Add a search/filter for claims
-                search_claim = st.text_input("🔍 Search claims:", placeholder="Enter claim number...")
+            st.metric("Total Feedback", feedback_summary['total_feedback'])
+            st.metric("Claims Assessed", feedback_summary['unique_claims'])
+            st.metric("Representatives", feedback_summary['unique_reps'])
+            st.metric("Avg Confidence", f"{feedback_summary['avg_confidence']:.1%}")
+            
+            if feedback_summary['feedback_by_status']:
+                st.markdown("**Status Distribution:**")
+                for status, count in feedback_summary['feedback_by_status'].items():
+                    st.write(f"• {status}: {count}")
+        else:
+            st.info("Feedback storage not available")
+    
+    # Claims Summary Table
+    st.markdown("---")
+    st.markdown("**📋 Claims Summary Table**")
+    
+       
+    # Get all claims with their current status and amounts
+    claims_summary = agent.get_claims_summary_table()
+    
+    if len(claims_summary) > 0:
+        # Add a search/filter for claims
+        search_claim = st.text_input("🔍 Search claims:", placeholder="Enter claim number...")
+        
+        if search_claim:
+            filtered_claims = claims_summary[
+                claims_summary['clmNum'].str.contains(search_claim, case=False, na=False)
+            ]
+            display_df = filtered_claims
+        else:
+            display_df = claims_summary
+        
+                        # Show the claims table with clickable rows
+        st.write("**Click on any claim row to view its lifetime development pattern:**")
+        
+        # Initialize selected claim in session state
+        if 'selected_claim_from_table' not in st.session_state:
+            st.session_state.selected_claim_from_table = display_df['clmNum'].iloc[0] if len(display_df) > 0 else None
+        
+        # Create a true interactive table with row selection
+        st.write("**💡 Tip: Click on any row in the table below to select a claim and see its lifetime analysis**")
+        
+        # Add a selection column to the dataframe
+        interactive_df = display_df.copy()
+        interactive_df['Select'] = False  # Initialize all as unselected
+        # make select to the first column
+        interactive_df = interactive_df[['Select', 'risk_level', 'clmNum', 'current_reserve', 'dateReceived', 'dateCompleted', 'dateReopened', 'total_incurred']]
+        
+        # Use data_editor for true row selection
+        edited_df = st.data_editor(
+            interactive_df,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Select": st.column_config.CheckboxColumn("Select", width="small", help="Click to select this claim"),
+                "risk_level": st.column_config.TextColumn("Risk Level", width="medium",disabled=True),
+                "clmNum": st.column_config.TextColumn("Claim #", width="medium",disabled=True),
+                "current_reserve": st.column_config.NumberColumn("Reserve ($)", format="$%.2f", width="medium",disabled=True),
+                "dateReceived": st.column_config.DateColumn("Opened", width="small",disabled=True),
+                "dateCompleted": st.column_config.DateColumn("Closed", width="small",disabled=True),
+                "dateReopened": st.column_config.DateColumn("Reopened", width="small",disabled=True),
+                "total_incurred": st.column_config.NumberColumn("Total Incurred ($)", format="$%.2f", width="medium",disabled=True),
+            },
+            key="interactive_claims_table"
+        )
+        
+        # Detect which claim was selected
+        if edited_df is not None and len(edited_df) > 0:
+            # Find the selected row
+            selected_rows = edited_df[edited_df['Select'] == True]
+            if len(selected_rows) > 0:
+                # Get the first selected claim
+                selected_claim_from_table = selected_rows.iloc[0]['clmNum']
+                # Update session state
+                if st.session_state.selected_claim_from_table != selected_claim_from_table:
+                    st.session_state.selected_claim_from_table = selected_claim_from_table
+            else:
+                # No selection, use the first claim or previous selection
+                selected_claim_from_table = st.session_state.selected_claim_from_table
+        else:
+            selected_claim_from_table = st.session_state.selected_claim_from_table
+        
+        # Show summary metrics
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Total Claims", len(display_df))
+        with col2:
+            st.metric("Total Reserve", f"${display_df['current_reserve'].sum():,.0f}")
+        
+        # Portfolio Analysis Section
+        st.markdown("---")
+        st.subheader("🔍 Portfolio Analysis & Insights")
+        
+        # Initialize general agent
+        general_agent = get_general_agent()
+        
+        if general_agent:
+            # Portfolio Summary
+            portfolio_summary = general_agent.get_portfolio_summary()
+            
+            if 'error' not in portfolio_summary:
+                # Display portfolio metrics
+                col1, col2, col3, col4 = st.columns(4)
                 
-                if search_claim:
-                    filtered_claims = claims_summary[
-                        claims_summary['clmNum'].str.contains(search_claim, case=False, na=False)
-                    ]
-                    display_df = filtered_claims
-                else:
-                    display_df = claims_summary
+                with col1:
+                    st.metric(
+                        "Portfolio Claims", 
+                        portfolio_summary['total_claims'],
+                        help="Total unique claims across all risk levels"
+                    )
                 
-                                # Show the claims table with clickable rows
-                st.write("**Click on any claim row to view its lifetime development pattern:**")
+                with col2:
+                    st.metric(
+                        "Total Reserve", 
+                        f"${portfolio_summary['total_reserve']:,.0f}",
+                        help="Total current reserve across all claims"
+                    )
                 
-                # Initialize selected claim in session state
-                if 'selected_claim_from_table' not in st.session_state:
-                    st.session_state.selected_claim_from_table = display_df['clmNum'].iloc[0] if len(display_df) > 0 else None
+                with col3:
+                    st.metric(
+                        "Total Paid", 
+                        f"${portfolio_summary['total_paid']:,.0f}",
+                        help="Total payments made across all claims"
+                    )
                 
-                # Create a true interactive table with row selection
-                st.write("**💡 Tip: Click on any row in the table below to select a claim and see its lifetime analysis**")
+                with col4:
+                    st.metric(
+                        "Total Incurred", 
+                        f"${portfolio_summary['total_incurred']:,.0f}",
+                        help="Total incurred costs across all claims"
+                    )
                 
-                # Add a selection column to the dataframe
-                interactive_df = display_df.copy()
-                interactive_df['Select'] = False  # Initialize all as unselected
-                # make select to the first column
-                interactive_df = interactive_df[['Select', 'risk_level', 'clmNum', 'current_reserve', 'dateReceived', 'dateCompleted', 'dateReopened', 'total_incurred']]
+                # Risk and Status Breakdown
+                col1, col2 = st.columns(2)
                 
-                # Use data_editor for true row selection
-                edited_df = st.data_editor(
-                    interactive_df,
-                    use_container_width=True,
-                    hide_index=True,
-                    column_config={
-                        "Select": st.column_config.CheckboxColumn("Select", width="small", help="Click to select this claim"),
-                        "risk_level": st.column_config.TextColumn("Risk Level", width="medium",disabled=True),
-                        "clmNum": st.column_config.TextColumn("Claim #", width="medium",disabled=True),
-                        "current_reserve": st.column_config.NumberColumn("Reserve ($)", format="$%.2f", width="medium",disabled=True),
-                        "dateReceived": st.column_config.DateColumn("Opened", width="small",disabled=True),
-                        "dateCompleted": st.column_config.DateColumn("Closed", width="small",disabled=True),
-                        "dateReopened": st.column_config.DateColumn("Reopened", width="small",disabled=True),
-                        "total_incurred": st.column_config.NumberColumn("Total Incurred ($)", format="$%.2f", width="medium",disabled=True),
-                    },
-                    key="interactive_claims_table"
+                with col1:
+                    st.markdown("**📊 Risk Level Breakdown:**")
+                    for risk, count in portfolio_summary['risk_breakdown'].items():
+                        st.write(f"• {risk}: {count} claims")
+                
+                with col2:
+                    st.markdown("**📊 Status Breakdown:**")
+                    for status, count in portfolio_summary['status_breakdown'].items():
+                        st.write(f"• {status}: {count} claims")
+                
+                # Natural Language Query Interface
+                st.markdown("---")
+                st.subheader("💬 Ask Portfolio Questions")
+                
+                # Query input
+                query = st.text_input(
+                    "Ask a question about your portfolio:",
+                    placeholder="e.g., 'How many claims have payments over $50k?' or 'Show claims with no payment and no expense'",
+                    help="Ask natural language questions about your claims portfolio"
                 )
                 
-                # Detect which claim was selected
-                if edited_df is not None and len(edited_df) > 0:
-                    # Find the selected row
-                    selected_rows = edited_df[edited_df['Select'] == True]
-                    if len(selected_rows) > 0:
-                        # Get the first selected claim
-                        selected_claim_from_table = selected_rows.iloc[0]['clmNum']
-                        # Update session state
-                        if st.session_state.selected_claim_from_table != selected_claim_from_table:
-                            st.session_state.selected_claim_from_table = selected_claim_from_table
-                    else:
-                        # No selection, use the first claim or previous selection
-                        selected_claim_from_table = st.session_state.selected_claim_from_table
-                else:
-                    selected_claim_from_table = st.session_state.selected_claim_from_table
-                
-                # Show summary metrics
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.metric("Total Claims", len(display_df))
-                with col2:
-                    st.metric("Total Reserve", f"${display_df['current_reserve'].sum():,.0f}")
-                
-                # Claim Lifetime Visualization
-                if selected_claim_from_table:
-                    st.markdown("---")
-                    st.subheader(f"📊 Claim Lifetime Analysis: {selected_claim_from_table}")
-                    
-                    try:
-                        # Load the claims transaction data for visualization
-                        claims_file = os.path.join("./_data", "critical_claims.csv")
-                        if os.path.exists(claims_file):
-                            df_raw_txn = pd.read_csv(claims_file)
-                            df_raw_txn['datetxn'] = pd.to_datetime(df_raw_txn['datetxn'])
-                            
-                            # Plot the claim lifetime
-                            plot_single_claim_lifetime(df_raw_txn, selected_claim_from_table)
-                        else:
-                            st.warning("Claims transaction data not found. Please ensure critical_claims.csv exists.")
-                    except Exception as e:
-                        st.error(f"Error loading claim lifetime data: {e}")
+                if query:
+                    with st.spinner("🔍 Analyzing portfolio..."):
+                        # Get query results
+                        result = general_agent.answer_query(query)
                         
+                        if result['type'] == 'error':
+                            st.error(f"❌ Error processing query: {result['error']}")
+                        else:
+                            # Display query results
+                            st.markdown(f"**📋 Query Results for: '{query}'**")
+                            
+                            if result['type'] == 'portfolio_summary':
+                                st.info("Showing portfolio summary as requested.")
+                            
+                            elif result['type'] == 'payment_threshold':
+                                st.success(f"Found {len(result['data'])} claims with payments ≥ ${result['threshold']:,.2f}")
+                                
+                                if len(result['data']) > 0:
+                                    # Display results in a table
+                                    display_data = result['data'][['clmNum', 'risk_level', 'clmStatus', 'paid_cumsum', 'reserve_cumsum', 'clmCause']].copy()
+                                    display_data['paid_cumsum'] = display_data['paid_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    display_data['reserve_cumsum'] = display_data['reserve_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    
+                                    st.dataframe(
+                                        display_data,
+                                        use_container_width=True,
+                                        hide_index=True,
+                                        column_config={
+                                            "clmNum": st.column_config.TextColumn("Claim #", width="medium"),
+                                            "risk_level": st.column_config.TextColumn("Risk", width="small"),
+                                            "clmStatus": st.column_config.TextColumn("Status", width="small"),
+                                            "paid_cumsum": st.column_config.TextColumn("Total Paid", width="medium"),
+                                            "reserve_cumsum": st.column_config.TextColumn("Reserve", width="medium"),
+                                            "clmCause": st.column_config.TextColumn("Cause", width="medium")
+                                        }
+                                    )
+                            
+                            elif result['type'] == 'expense_threshold':
+                                st.success(f"Found {len(result['data'])} claims with expenses ≥ ${result['threshold']:,.2f}")
+                                
+                                if len(result['data']) > 0:
+                                    # Display results in a table
+                                    display_data = result['data'][['clmNum', 'risk_level', 'clmStatus', 'expense_cumsum', 'reserve_cumsum', 'clmCause']].copy()
+                                    display_data['expense_cumsum'] = display_data['expense_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    display_data['reserve_cumsum'] = display_data['reserve_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    
+                                    st.dataframe(
+                                        display_data,
+                                        use_container_width=True,
+                                        hide_index=True,
+                                        column_config={
+                                            "clmNum": st.column_config.TextColumn("Claim #", width="medium"),
+                                            "risk_level": st.column_config.TextColumn("Risk", width="small"),
+                                            "clmStatus": st.column_config.TextColumn("Status", width="small"),
+                                            "expense_cumsum": st.column_config.TextColumn("Total Expenses", width="medium"),
+                                            "reserve_cumsum": st.column_config.TextColumn("Reserve", width="medium"),
+                                            "clmCause": st.column_config.TextColumn("Cause", width="medium")
+                                        }
+                                    )
+                            
+                            elif result['type'] == 'no_activity':
+                                st.success(f"Found {len(result['data'])} claims with no payment and no expense")
+                                
+                                if len(result['data']) > 0:
+                                    display_data = result['data'][['clmNum', 'risk_level', 'clmStatus', 'reserve_cumsum', 'clmCause']].copy()
+                                    display_data['reserve_cumsum'] = display_data['reserve_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    
+                                    st.dataframe(
+                                        display_data,
+                                        use_container_width=True,
+                                        hide_index=True,
+                                        column_config={
+                                            "clmNum": st.column_config.TextColumn("Claim #", width="medium"),
+                                            "risk_level": st.column_config.TextColumn("Risk", width="small"),
+                                            "clmStatus": st.column_config.TextColumn("Status", width="small"),
+                                            "reserve_cumsum": st.column_config.TextColumn("Reserve", width="medium"),
+                                            "clmCause": st.column_config.TextColumn("Cause", width="medium")
+                                        }
+                                    )
+                            
+                            elif result['type'] == 'law_firm_search':
+                                st.success(f"Found {len(result['data'])} notes mentioning law firm '{result['firm_name']}'")
+                                
+                                if len(result['data']) > 0:
+                                    # Show unique claims
+                                    unique_claims = result['data']['clmNum'].unique()
+                                    st.write(f"**Claims involved:** {', '.join(unique_claims)}")
+                                    
+                                    # Show sample notes
+                                    st.markdown("**Sample notes:**")
+                                    for _, note in result['data'].head(3).iterrows():
+                                        st.write(f"**{note['clmNum']}** ({note['dateNote'].strftime('%Y-%m-%d')}): {note['note'][:200]}...")
+                            
+                            elif result['type'] in ['risk_level', 'status', 'cause']:
+                                st.success(f"Found {len(result['data'])} claims matching your criteria")
+                                
+                                if len(result['data']) > 0:
+                                    display_data = result['data'][['clmNum', 'risk_level', 'clmStatus', 'incurred_cumsum', 'reserve_cumsum', 'clmCause']].copy()
+                                    display_data['incurred_cumsum'] = display_data['incurred_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    display_data['reserve_cumsum'] = display_data['reserve_cumsum'].apply(lambda x: f"${x:,.2f}")
+                                    
+                                    st.dataframe(
+                                        display_data,
+                                        use_container_width=True,
+                                        hide_index=True,
+                                        column_config={
+                                            "clmNum": st.column_config.TextColumn("Claim #", width="medium"),
+                                            "risk_level": st.column_config.TextColumn("Risk", width="small"),
+                                            "clmStatus": st.column_config.TextColumn("Status", width="small"),
+                                            "incurred_cumsum": st.column_config.TextColumn("Total Incurred", width="medium"),
+                                            "reserve_cumsum": st.column_config.TextColumn("Reserve", width="medium"),
+                                            "clmCause": st.column_config.TextColumn("Cause", width="medium")
+                                        }
+                                    )
+                            
+                            elif result['type'] == 'feedback':
+                                st.success(f"Found {len(result['data'])} claims with representative feedback")
+                                
+                                if len(result['data']) > 0:
+                                    display_data = result['data'][['clmNum', 'risk_level', 'clmStatus', 'rep_name', 'rep_confidence', 'timestamp']].copy()
+                                    display_data['rep_confidence'] = display_data['rep_confidence'].apply(lambda x: f"{x:.1%}")
+                                    
+                                    st.dataframe(
+                                        display_data,
+                                        use_container_width=True,
+                                        hide_index=True,
+                                        column_config={
+                                            "clmNum": st.column_config.TextColumn("Claim #", width="medium"),
+                                            "risk_level": st.column_config.TextColumn("Risk", width="small"),
+                                            "clmStatus": st.column_config.TextColumn("Status", width="small"),
+                                            "rep_name": st.column_config.TextColumn("Rep Name", width="medium"),
+                                            "rep_confidence": st.column_config.TextColumn("Confidence", width="medium"),
+                                            "timestamp": st.column_config.TextColumn("Assessment Date", width="medium")
+                                        }
+                                    )
+                            
+                            # Show query type for debugging
+                            st.caption(f"Query type: {result['type']}")
+                            
+                            # Export results
+                            if 'data' in result and hasattr(result['data'], 'to_csv'):
+                                # Only show export for DataFrame results
+                                if len(result['data']) > 0:
+                                    st.markdown("**📤 Export Results**")
+                                    csv_data = result['data'].to_csv(index=False)
+                                    st.download_button(
+                                        label="📥 Download Results as CSV",
+                                        data=csv_data,
+                                        file_name=f"portfolio_query_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                                        mime="text/csv"
+                                    )
+                            elif result['type'] == 'portfolio_summary':
+                                # For portfolio summary, show summary metrics instead of export
+                                st.markdown("**📊 Portfolio Summary Metrics**")
+                                summary = result['data']
+                                col1, col2, col3 = st.columns(3)
+                                with col1:
+                                    st.metric("High Value Claims (>$100k)", summary['high_value_claims_count'])
+                                with col2:
+                                    st.metric("No Payment Claims", summary['no_payment_claims_count'])
+                                with col3:
+                                    st.metric("No Expense Claims", summary['no_expense_claims_count'])
             else:
-                st.info("No claims data available")
+                st.error(f"❌ Error loading portfolio data: {portfolio_summary['error']}")
+        else:
+            st.warning("General claims agent not available")
+        
+        # Claim Lifetime Visualization
+        if selected_claim_from_table:
+            st.markdown("---")
+            st.subheader(f"📊 Claim Lifetime Analysis: {selected_claim_from_table}")
+            
+            try:
+                # Load both CRITICAL and HIGH risk claims data for visualization
+                all_transactions = []
+                
+                # Load CRITICAL claims
+                critical_claims_file = os.path.join("./_data", "critical_claims.csv")
+                if os.path.exists(critical_claims_file):
+                    critical_df = pd.read_csv(critical_claims_file)
+                    critical_df['datetxn'] = pd.to_datetime(critical_df['datetxn'])
+                    all_transactions.append(critical_df)
+                
+                # Load HIGH risk claims
+                high_risk_claims_file = os.path.join("./_data", "high_risk_claims.csv")
+                if os.path.exists(high_risk_claims_file):
+                    high_risk_df = pd.read_csv(high_risk_claims_file)
+                    high_risk_df['datetxn'] = pd.to_datetime(high_risk_df['datetxn'])
+                    all_transactions.append(high_risk_df)
+                
+                if len(all_transactions) > 0:
+                    # Combine all transactions
+                    df_raw_txn = pd.concat(all_transactions, ignore_index=True)
+                    df_raw_txn = df_raw_txn.sort_values(['risk_level', 'clmNum', 'datetxn'])
                     
-        except Exception as e:
-            st.warning(f"Could not load claims summary: {e}")
-            st.info("Claims summary will be available once data is loaded")
+                    # Plot the claim lifetime
+                    plot_single_claim_lifetime(df_raw_txn, selected_claim_from_table)
+                else:
+                    st.warning("No claims transaction data found. Please ensure critical_claims.csv or high_risk_claims.csv exists.")
+            except Exception as e:
+                st.error(f"Error loading claim lifetime data: {e}")
         
-        # st.markdown("---")
-        # st.markdown("**Select a claim number to view notes in timeline format**")
-
-        # # Get unique claim numbers for dropdown
-        # claim_numbers = sorted(notes_df['clmNum'].unique())
+        # Bayesian Status Prediction Section
+        st.markdown("---")
+        st.subheader(f"🔮 Bayesian Final Status Prediction for {selected_claim_from_table}")
+                
+              
+        predictor = get_claim_predictor()
         
-        # # Claim selection
-        # col1, col2 = st.columns([1, 3])
+        if predictor:
+            # Get prediction for the selected claim
+            prediction = predictor.predict_final_status_probabilities(selected_claim_from_table)
+            
+            # Display prediction results
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric(
+                    "PAID Probability", 
+                    f"{prediction['probabilities']['PAID']:.1%}",
+                    help="Probability this claim will end with payments"
+                )
+            
+            with col2:
+                st.metric(
+                    "CLOSED Probability", 
+                    f"{prediction['probabilities']['CLOSED']:.1%}",
+                    help="Probability this claim will close without payments"
+                )
+            
+            with col3:
+                st.metric(
+                    "DENIED Probability", 
+                    f"{prediction['probabilities']['DENIED']:.1%}",
+                    help="Probability this claim will be denied"
+                )
+            
+            with col4:
+                st.metric(
+                    "Confidence", 
+                    f"{prediction['confidence']:.1%}",
+                    help="Confidence level in this prediction"
+                )
+            
+                # Display key factors
+            st.markdown("**🔍 Key Factors Influencing Prediction:**")
+            factors_col1, factors_col2 = st.columns(2)
+            
+            with factors_col1:
+                for factor in prediction['factors'][:len(prediction['factors'])//2]:
+                    st.markdown(f"• {factor}")
+            
+            with factors_col2:
+                for factor in prediction['factors'][len(prediction['factors'])//2:]:
+                    st.markdown(f"• {factor}")
+            
+            # Prediction metadata
+            st.caption(f"**Prediction Date:** {prediction['prediction_date']} | **Last Updated:** {prediction['last_updated']}")
+            
+            # Add a note about the placeholder nature
+            st.info("""
+            **ℹ️ Note:** These are placeholder probabilities for demonstration purposes. 
+            In production, this would use actual Bayesian calculations based on historical data, 
+            claim characteristics, and machine learning models.
+            """)
         
-        # with col1:
-        #     selected_claim = st.selectbox(
-        #         "Select Claim Number:",
-        #         options=claim_numbers,
-        #         key="claim_selector"
-        #     )
+        else:
+            st.warning("Claim status predictor not available")
+         
+                 # Claim Representative Feedback Section
+        st.markdown("---")
+        st.subheader(f"👤 Claim Representative Expert Assessment")
         
-        # with col2:
-        #     if selected_claim:
-        #         st.info(f"Selected: **{selected_claim}**")
+        # Get feedback storage and load existing feedback
+        feedback_storage = get_feedback_storage()
+        existing_feedback = None
         
+        if feedback_storage:
+            existing_feedback = feedback_storage.load_feedback(selected_claim_from_table)
+        
+        # Initialize feedback data
+        if existing_feedback:
+            # Use existing feedback data
+            feedback_data = {
+                'rep_paid_prob': existing_feedback['rep_paid_prob'],
+                'rep_closed_prob': existing_feedback['rep_closed_prob'],
+                'rep_denied_prob': existing_feedback['rep_denied_prob'],
+                'rep_confidence': existing_feedback['rep_confidence'],
+                'thought_process': existing_feedback['thought_process'],
+                'timestamp': existing_feedback['timestamp'],
+                'rep_name': existing_feedback['rep_name'],
+                'custom_factors': existing_feedback.get('custom_factors', '')
+            }
+        else:
+            # Initialize with default values
+            feedback_data = {
+                'rep_paid_prob': 0.0,
+                'rep_closed_prob': 0.0,
+                'rep_denied_prob': 0.0,
+                'rep_confidence': 0.0,
+                'thought_process': '',
+                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'rep_name': ''
+            }
+         
+         # Create two columns for input
+        col1, col2 = st.columns([1, 1])
+         
+        with col1:
+            st.markdown("**📊 Your Probability Assessment**")
+            
+            # Representative's probability inputs
+            rep_paid = st.slider(
+                "PAID Probability (%)", 
+                0, 100, 
+                int(feedback_data['rep_paid_prob'] * 100),
+                help="Your assessment of the probability this claim will end with payments"
+            )
+            
+            rep_closed = st.slider(
+                "CLOSED Probability (%)", 
+                0, 100, 
+                int(feedback_data['rep_closed_prob'] * 100),
+                help="Your assessment of the probability this claim will close without payments"
+            )
+            
+            rep_denied = st.slider(
+                "DENIED Probability (%)", 
+                0, 100, 
+                int(feedback_data['rep_denied_prob'] * 100),
+                help="Your assessment of the probability this claim will be denied"
+            )
+            
+            # Auto-calculate the third probability to ensure they sum to 100%
+            total_prob = rep_paid + rep_closed + rep_denied
+            if total_prob != 100:
+                st.warning(f"⚠️ Probabilities sum to {total_prob}%. They should equal 100%.")
+                
+                # Auto-adjust the largest probability
+                if total_prob > 100:
+                    excess = total_prob - 100
+                    if rep_paid >= rep_closed and rep_paid >= rep_denied:
+                        rep_paid -= excess
+                    elif rep_closed >= rep_paid and rep_closed >= rep_denied:
+                        rep_closed -= excess
+                    else:
+                        rep_denied -= excess
+                else:
+                    deficit = 100 - total_prob
+                    if rep_paid <= rep_closed and rep_paid <= rep_denied:
+                        rep_paid += deficit
+                    elif rep_closed <= rep_paid and rep_closed <= rep_denied:
+                        rep_closed += deficit
+                    else:
+                        rep_denied += deficit
+            
+            # Representative's confidence
+            rep_confidence = st.slider(
+                "Your Confidence Level (%)", 
+                0, 100, 
+                int(feedback_data['rep_confidence'] * 100),
+                help="How confident are you in your assessment?"
+            )
+            
+            # Representative name
+            rep_name = st.text_input(
+                "Your Name/ID",
+                value=feedback_data['rep_name'],
+                placeholder="Enter your name or ID",
+                help="For tracking and audit purposes"
+            )
+        
+        with col2:
+            st.markdown("**🔍 Your Thought Process & Insights**")
+            
+            # Text area for thought process
+            thought_process = st.text_area(
+                "Explain your reasoning:",
+                value=feedback_data['thought_process'],
+                height=200,
+                placeholder="Share your insights, additional information, or reasoning that the model might not have considered...",
+                help="This helps document your decision rationale and can improve future predictions"
+            )
+            
+            # Key factors that influenced decision
+            st.markdown("**🎯 Key Factors You Considered:**")
+            
+            # Checkboxes for common factors
+            col2a, col2b = st.columns(2)
+            
+            with col2a:
+                st.markdown("**Financial Factors:**")
+                st.checkbox("Payment history", key=f"factor_payment_{selected_claim_from_table}")
+                st.checkbox("Reserve adequacy", key=f"factor_reserve_{selected_claim_from_table}")
+                st.checkbox("Expense patterns", key=f"factor_expense_{selected_claim_from_table}")
+                st.checkbox("Claim size", key=f"factor_size_{selected_claim_from_table}")
+            
+            with col2b:
+                st.markdown("**Operational Factors:**")
+                st.checkbox("Legal complexity", key=f"factor_legal_{selected_claim_from_table}")
+                st.checkbox("Documentation quality", key=f"factor_docs_{selected_claim_from_table}")
+                st.checkbox("Third party involvement", key=f"factor_third_party_{selected_claim_from_table}")
+                st.checkbox("Timeline factors", key=f"factor_timeline_{selected_claim_from_table}")
+            
+            # Additional custom factors
+            custom_factors = st.text_input(
+                "Other factors:",
+                placeholder="e.g., Special circumstances, industry knowledge, etc.",
+                help="Any other factors not listed above"
+            )
+        
+        # Save button
+        if st.button("💾 Save Expert Assessment", type="primary"):
+            if feedback_storage:
+                # Prepare feedback data for storage
+                feedback_data_to_save = {
+                    'claim_number': selected_claim_from_table,
+                    'model_paid_prob': prediction['probabilities']['PAID'],
+                    'model_closed_prob': prediction['probabilities']['CLOSED'],
+                    'model_denied_prob': prediction['probabilities']['DENIED'],
+                    'model_confidence': prediction['confidence'],
+                    'rep_paid_prob': rep_paid / 100.0,
+                    'rep_closed_prob': rep_closed / 100.0,
+                    'rep_denied_prob': rep_denied / 100.0,
+                    'rep_confidence': rep_confidence / 100.0,
+                    'thought_process': thought_process,
+                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'rep_name': rep_name,
+                    'custom_factors': custom_factors
+                }
+                
+                # Save to persistent storage
+                success = feedback_storage.save_feedback(feedback_data_to_save)
+                
+                if success:
+                    st.success("✅ Expert assessment saved successfully! It will persist across sessions.")
+                    st.rerun()
+                else:
+                    st.error("❌ Failed to save assessment. Please try again.")
+            else:
+                st.error("❌ Feedback storage not available. Cannot save assessment.")
+        
+        # Display comparison if feedback exists
+        if existing_feedback and existing_feedback['rep_name']:
+            st.markdown("---")
+            st.subheader("📊 Model vs. Expert Comparison")
+            
+            # Create comparison metrics
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric(
+                    "PAID Probability",
+                    f"{existing_feedback['rep_paid_prob']:.1%}",
+                    delta=f"{(existing_feedback['rep_paid_prob'] - prediction['probabilities']['PAID']):+.1%}",
+                    delta_color="normal"
+                )
+                st.caption("Expert vs Model")
+            
+            with col2:
+                st.metric(
+                    "CLOSED Probability",
+                    f"{existing_feedback['rep_closed_prob']:.1%}",
+                    delta=f"{(existing_feedback['rep_closed_prob'] - prediction['probabilities']['CLOSED']):+.1%}",
+                    delta_color="normal"
+                )
+                st.caption("Expert vs Model")
+            
+            with col3:
+                st.metric(
+                    "DENIED Probability",
+                    f"{existing_feedback['rep_denied_prob']:.1%}",
+                    delta=f"{(existing_feedback['rep_denied_prob'] - prediction['probabilities']['DENIED']):+.1%}",
+                    delta_color="normal"
+                )
+                st.caption("Expert vs Model")
+            
+            with col4:
+                st.metric(
+                    "Confidence Level",
+                    f"{existing_feedback['rep_confidence']:.1%}",
+                    delta=f"{(existing_feedback['rep_confidence'] - prediction['confidence']):+.1%}",
+                    delta_color="normal"
+                )
+                st.caption("Expert vs Model")
+            
+            # Display thought process
+            st.markdown("**💭 Expert Reasoning:**")
+            st.info(existing_feedback['thought_process'])
+            
+            # Display metadata
+            st.caption(f"**Assessed by:** {existing_feedback['rep_name']} | **Timestamp:** {existing_feedback['timestamp']}")
+        
+        # Export feedback data
+        if existing_feedback and existing_feedback['rep_name']:
+            st.markdown("---")
+            st.markdown("**📤 Export Feedback Data**")
+            
+            # Create feedback data for export
+            feedback_data = {
+                'claim_number': selected_claim_from_table,
+                'model_paid_prob': prediction['probabilities']['PAID'],
+                'model_closed_prob': prediction['probabilities']['CLOSED'],
+                'model_denied_prob': prediction['probabilities']['DENIED'],
+                'model_confidence': prediction['confidence'],
+                'rep_paid_prob': existing_feedback['rep_paid_prob'],
+                'rep_closed_prob': existing_feedback['rep_closed_prob'],
+                'rep_denied_prob': existing_feedback['rep_denied_prob'],
+                'rep_confidence': existing_feedback['rep_confidence'],
+                'thought_process': existing_feedback['thought_process'],
+                'rep_name': existing_feedback['rep_name'],
+                'timestamp': existing_feedback['timestamp'],
+                'custom_factors': existing_feedback.get('custom_factors', '')
+            }
+            
+            # Convert to DataFrame for download
+            feedback_df = pd.DataFrame([feedback_data])
+            
+            st.download_button(
+                label="📥 Download Feedback as CSV",
+                data=feedback_df.to_csv(index=False),
+                file_name=f"claim_feedback_{selected_claim_from_table}_{datetime.now().strftime('%Y%m%d')}.csv",
+                mime="text/csv"
+            )
+                    
+           
         # Initialize chat history in session state
         if 'chat_history' not in st.session_state:
             st.session_state.chat_history = {}
@@ -363,11 +963,27 @@ def main():
                     # Generate summary using OpenAI
                     with st.spinner("🤖 Generating claim summary..."):
                         try:
-                            # Get claim data for context
-                            claims_file = os.path.join("./_data", "critical_claims.csv")
-                            if os.path.exists(claims_file):
-                                df_raw_txn = pd.read_csv(claims_file)
-                                df_raw_txn['datetxn'] = pd.to_datetime(df_raw_txn['datetxn'])
+                            # Get claim data for context from both CRITICAL and HIGH risk claims
+                            all_transactions = []
+                            
+                            # Load CRITICAL claims
+                            critical_claims_file = os.path.join("./_data", "critical_claims.csv")
+                            if os.path.exists(critical_claims_file):
+                                critical_df = pd.read_csv(critical_claims_file)
+                                critical_df['datetxn'] = pd.to_datetime(critical_df['datetxn'])
+                                all_transactions.append(critical_df)
+                            
+                            # Load HIGH risk claims
+                            high_risk_claims_file = os.path.join("./_data", "high_risk_claims.csv")
+                            if os.path.exists(high_risk_claims_file):
+                                high_risk_df = pd.read_csv(high_risk_claims_file)
+                                high_risk_df['datetxn'] = pd.to_datetime(high_risk_df['datetxn'])
+                                all_transactions.append(high_risk_df)
+                            
+                            if len(all_transactions) > 0:
+                                # Combine all transactions
+                                df_raw_txn = pd.concat(all_transactions, ignore_index=True)
+                                df_raw_txn = df_raw_txn.sort_values(['risk_level', 'clmNum', 'datetxn'])
                                 
                                 # Filter for selected claim
                                 claim_data = df_raw_txn[df_raw_txn['clmNum'] == selected_claim_from_table]
@@ -498,19 +1114,20 @@ If you don't have enough information for any part, clearly state "I don't have e
             st.markdown("---")
             st.subheader(f"📅 Communication Timeline & Notes for {selected_claim_from_table}")
             
-            # Load claim notes data
+            # Load claim notes data using the agent (combines CRITICAL and HIGH risk notes)
             try:
-                notes_file = os.path.join("./_data", "claim_notes.csv")
-                if os.path.exists(notes_file):
-                    claim_notes_df = pd.read_csv(notes_file)
-                    claim_notes_df['dateNote'] = pd.to_datetime(claim_notes_df['dateNote'])
-                    
-                    # Filter notes for selected claim
-                    claim_notes = claim_notes_df[claim_notes_df['clmNum'] == selected_claim_from_table].sort_values('dateNote')
+                # Get notes for the selected claim from both sources
+                claim_notes = agent.get_notes_by_claim(selected_claim_from_table)
+                
+                if len(claim_notes) > 0:
+                    # Convert whenadded to dateNote for compatibility with existing code
+                    claim_notes = claim_notes.copy()
+                    claim_notes['dateNote'] = claim_notes['whenadded']
+                    claim_notes = claim_notes.sort_values('dateNote')
                     
                     if len(claim_notes) > 0:
                         # Show notes summary
-                        col1, col2, col3, col4 = st.columns(4)
+                        col1, col2, col3, col4, col5 = st.columns(5)
                         with col1:
                             st.metric("Total Notes", len(claim_notes))
                         with col2:
@@ -519,10 +1136,19 @@ If you don't have enough information for any part, clearly state "I don't have e
                             st.metric("High Priority", len(claim_notes[claim_notes['priority'] == 'High']))
                         with col4:
                             st.metric("Date Range", f"{(claim_notes['dateNote'].max() - claim_notes['dateNote'].min()).days} days")
+                        with col5:
+                            # Show notes source breakdown
+                            if 'note_source' in claim_notes.columns:
+                                critical_notes = len(claim_notes[claim_notes['note_source'] == 'CRITICAL'])
+                                high_notes = len(claim_notes[claim_notes['note_source'] == 'HIGH'])
+                                st.metric("CRITICAL Notes", critical_notes)
+                                st.caption(f"HIGH: {high_notes}")
+                            else:
+                                st.metric("Source", "Mixed")
                         
                         # Add filters for notes
                         st.markdown("**🔍 Filter Notes:**")
-                        col1, col2, col3 = st.columns(3)
+                        col1, col2, col3, col4 = st.columns(4)
                         
                         with col1:
                             note_type_filter = st.selectbox(
@@ -545,6 +1171,17 @@ If you don't have enough information for any part, clearly state "I don't have e
                                 key=f"author_filter_{selected_claim_from_table}"
                             )
                         
+                        with col4:
+                            # Add source filter if available
+                            if 'note_source' in claim_notes.columns:
+                                source_filter = st.selectbox(
+                                    "Source:",
+                                    ["All", "CRITICAL", "HIGH"],
+                                    key=f"source_filter_{selected_claim_from_table}"
+                                )
+                            else:
+                                source_filter = "All"
+                        
                         # Apply filters
                         filtered_notes = claim_notes.copy()
                         if note_type_filter != "All":
@@ -553,6 +1190,8 @@ If you don't have enough information for any part, clearly state "I don't have e
                             filtered_notes = filtered_notes[filtered_notes['priority'] == priority_filter]
                         if author_filter != "All":
                             filtered_notes = filtered_notes[filtered_notes['author'] == author_filter]
+                        if source_filter != "All" and 'note_source' in filtered_notes.columns:
+                            filtered_notes = filtered_notes[filtered_notes['note_source'] == source_filter]
                         
                         # Display filtered notes
                         st.markdown(f"**📋 Showing {len(filtered_notes)} filtered notes:**")
@@ -583,13 +1222,20 @@ If you don't have enough information for any part, clearly state "I don't have e
                                     st.markdown(f"**{row['note']}**")
                                     
                                     # Note metadata
-                                    col2a, col2b, col2c = st.columns(3)
+                                    col2a, col2b, col2c, col2d = st.columns(4)
                                     with col2a:
                                         st.caption(f"Type: {row['note_type'].replace('_', ' ').title()}")
                                     with col2b:
                                         st.caption(f"Priority: {row['priority']}")
                                     with col2c:
                                         st.caption(f"Note #{idx + 1}")
+                                    with col2d:
+                                        # Show note source if available
+                                        if 'note_source' in row:
+                                            source_emoji = "🔴" if row['note_source'] == 'CRITICAL' else "🟡"
+                                            st.caption(f"{source_emoji} {row['note_source']}")
+                                        else:
+                                            st.caption("📝 General")
                                 
                                 # Separator line
                                 st.markdown("---")
@@ -696,9 +1342,6 @@ If you don't have enough information for any part, clearly state "I don't have e
                 else:
                     st.info("No notes found for this claim.")
         
-    except Exception as e:
-        st.error(f"Error loading notes: {str(e)}")
-        st.info("Make sure the notes data is available. The app will create dummy data if needed.")
-
+    
 if __name__ == "__main__":
     main()
