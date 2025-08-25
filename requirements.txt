@@ -1,5 +1,7 @@
-pandas
-streamlit
-numpy
-openai
-python-dotenv
+pandas==2.3.2
+streamlit==1.48.1
+numpy==2.3.2
+openai==1.101.0
+python-dotenv>=1.0.0
+plotly==6.3.0
+pyarrow==21.0.0
