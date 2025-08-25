@@ -1,0 +1,360 @@
+dateNote,clmNum,note,note_type,priority,author
+2020-07-16 00:00:00.000000000,CLM16659908,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM16659908 established. Reserve: $0.00. Need itemized list of stolen property. - Priority: High,email,Low,Client
+2020-07-20 06:51:25.714285714,CLM16659908,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM16659908 established. Reserve: $0.00. Need itemized list of stolen property.,email,High,Insurance Company
+2020-07-24 13:42:51.428571428,CLM16659908,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM16659908 established. Reserve: $0.00. Need itemized list of stolen property. - Priority: High,email,High,Insurance Company
+2020-07-28 20:34:17.142857143,CLM16659908,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM16659908. Total value: $30.76. - Follow-up required by legal,email,Low,Client
+2020-08-02 03:25:42.857142857,CLM16659908,📧 EMAIL FROM ADJUSTER TO CLIENT: Need receipts and photos for stolen items in claim CLM16659908. Also need police report number. - Priority: Medium,email,Low,Lawyer
+2020-08-06 10:17:08.571428571,CLM16659908,📧 EMAIL FROM ADJUSTER TO CLIENT: Need receipts and photos for stolen items in claim CLM16659908. Also need police report number.,email,Low,Lawyer
+2020-08-10 17:08:34.285714286,CLM16659908,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM16659908. Total value: $338.07. - Priority: High,email,Medium,Contractor
+2020-08-15 00:00:00.000000000,CLM16659908,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM16659908. Items covered under personal property endorsement. - Follow-up required by supervisor,email,High,Medical Provider
+2020-08-15 00:00:00.000000000,CLM16659908,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM16659908. Items covered under personal property endorsement.,email,Low,Insurance Company
+2020-08-20 10:54:32.727272727,CLM16659908,📧 EMAIL FROM ADJUSTER TO LEGAL: Theft claim CLM16659908 involves high-value items. Need legal review of coverage limits.,email,Medium,Lawyer
+2020-08-25 21:49:05.454545454,CLM16659908,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $941.38 for claim CLM16659908. Payment will be issued within 5 business days. - Priority: Low,email,High,Legal Department
+2020-08-31 08:43:38.181818181,CLM16659908,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $959.49 for claim CLM16659908. Payment will be issued within 5 business days. - Priority: Medium,email,Low,Client
+2020-09-05 19:38:10.909090909,CLM16659908,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for theft claim CLM16659908. Please send payment to my address. - Priority: High,email,Medium,Insurance Company
+2020-09-11 06:32:43.636363636,CLM16659908,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $317.94 for claim CLM16659908. Payment will be issued within 5 business days.,email,Medium,Medical Provider
+2020-09-16 17:27:16.363636363,CLM16659908,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for theft claim CLM16659908. Please send payment to my address. - Priority: High,email,Medium,Contractor
+2020-09-22 04:21:49.090909091,CLM16659908,📧 INTERNAL NOTE: Recorded statement taken for CLM16659908. Transcript attached. - Follow-up required by adjuster,email,High,Contractor
+2020-09-27 15:16:21.818181818,CLM16659908,📧 INTERNAL NOTE: Fraud investigation initiated for CLM16659908. Red flags identified.,email,Low,Lawyer
+2020-10-03 02:10:54.545454545,CLM16659908,📧 INTERNAL NOTE: Fraud investigation initiated for CLM16659908. Red flags identified. - Priority: Medium,email,Low,Legal Department
+2020-10-08 13:05:27.272727272,CLM16659908,📧 INTERNAL NOTE: Settlement authority requested for CLM16659908. Amount: $768.00. - Follow-up required by legal,email,High,Medical Provider
+2020-10-14 00:00:00.000000000,CLM16659908,📧 INTERNAL NOTE: Litigation filed on CLM16659908. Case number: CV-2020-5828. - Priority: High,email,Low,Adjuster
+2020-10-14 00:00:00.000000000,CLM16659908,📧 INTERNAL NOTE: Settlement conference for CLM16659908. Attorney attending. - Follow-up required by legal,email,High,Adjuster
+2021-06-24 00:00:00.000000000,CLM27750764,📧 EMAIL FROM INSURANCE TO CLIENT: Injury claim CLM27750764 established. Reserve set at $0.00. Medical evaluation required.,email,High,Contractor
+2021-06-24 00:00:00.000000000,CLM27750764,📧 EMAIL FROM INSURANCE TO CLIENT: Personal injury claim CLM27750764 opened with medical reserve of $0.00. Please provide all medical records.,email,Medium,Client
+2021-06-28 06:51:25.714285714,CLM27750764,📧 EMAIL FROM INSURANCE TO CLIENT: Injury claim CLM27750764 established. Reserve set at $0.00. Medical evaluation required.,email,Medium,Lawyer
+2021-07-02 13:42:51.428571428,CLM27750764,📧 EMAIL FROM ADJUSTER TO MEDICAL PROVIDER: Requesting medical records for injury claim CLM27750764. Authorization attached.,email,High,Lawyer
+2021-07-06 20:34:17.142857143,CLM27750764,📧 EMAIL FROM LEGAL TO ADJUSTER: Injury claim CLM27750764 analysis complete. Recommend increasing reserve to $745.91. - Priority: High,email,High,Lawyer
+2021-07-11 03:25:42.857142857,CLM27750764,📧 EMAIL FROM MEDICAL PROVIDER TO ADJUSTER: Medical records for CLM27750764 attached. Patient has permanent disability.,email,Low,Client
+2021-07-15 10:17:08.571428571,CLM27750764,📧 EMAIL FROM ADJUSTER TO MEDICAL PROVIDER: Requesting medical records for injury claim CLM27750764. Authorization attached.,email,High,Legal Department
+2021-07-19 17:08:34.285714286,CLM27750764,📧 EMAIL FROM ADJUSTER TO CLIENT: Medical evaluation complete. Reserve increased to $285.62 for claim CLM27750764.,email,Low,Lawyer
+2021-07-24 00:00:00.000000000,CLM27750764,📧 EMAIL FROM ADJUSTER TO MEDICAL PROVIDER: Requesting medical records for injury claim CLM27750764. Authorization attached.,email,Low,Client
+2021-07-24 00:00:00.000000000,CLM27750764,📧 EMAIL FROM MEDICAL PROVIDER TO ADJUSTER: Medical records for CLM27750764 attached. Patient has permanent disability.,email,Low,Legal Department
+2021-07-27 09:36:00.000000000,CLM27750764,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting injury settlement on CLM27750764. Requesting authority for higher offer.,email,Medium,Medical Provider
+2021-07-29 10:54:32.727272727,CLM27750764,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer too low. My medical bills are $906.08 and I have permanent disability.,email,Low,Insurance Company
+2021-08-03 21:49:05.454545454,CLM27750764,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting injury settlement on CLM27750764. Requesting authority for higher offer.,email,High,Contractor
+2021-08-09 08:43:38.181818181,CLM27750764,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting injury settlement on CLM27750764. Requesting authority for higher offer.,email,High,Medical Provider
+2021-08-14 19:38:10.909090909,CLM27750764,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting injury settlement on CLM27750764. Requesting authority for higher offer.,email,Low,Legal Department
+2021-08-20 06:32:43.636363636,CLM27750764,📧 INTERNAL NOTE: Expert witness retained for CLM27750764. Cost: $149.71. - Priority: High - Follow-up required by client,email,Medium,Medical Provider
+2021-08-25 17:27:16.363636363,CLM27750764,📧 INTERNAL NOTE: Trial date set for CLM27750764. Court: Superior Court. - Priority: High,email,Medium,Insurance Company
+2021-08-29 19:12:00.000000000,CLM27750764,📧 INTERNAL NOTE: Reopening request received for CLM27750764. New damages alleged. - Priority: High,email,Medium,Legal Department
+2021-08-31 04:21:49.090909091,CLM27750764,📧 INTERNAL NOTE: Reserve review completed for CLM27750764. Current reserve: $0.00. - Priority: Low - Follow-up required by adjuster,email,Low,Client
+2021-09-05 15:16:21.818181818,CLM27750764,📧 INTERNAL NOTE: Quality review completed for CLM27750764. No issues found.,email,Medium,Medical Provider
+2021-09-11 02:10:54.545454545,CLM27750764,📧 INTERNAL NOTE: Settlement authority requested for CLM27750764. Amount: $536.15. - Priority: Low,email,High,Insurance Company
+2021-09-16 13:05:27.272727272,CLM27750764,📧 INTERNAL NOTE: Trial date set for CLM27750764. Court: District Court.,email,Medium,Lawyer
+2021-09-22 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Mediation scheduled for CLM27750764. Date: 2021-09-22.,email,Low,Contractor
+2021-09-22 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Surveillance completed for CLM27750764. No activity observed. - Priority: Low,email,Medium,Client
+2021-09-27 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Surveillance completed for CLM27750764. No activity observed.,email,High,Insurance Company
+2021-10-02 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Reserve review completed for CLM27750764. Current reserve: $0.00. - Priority: High,email,High,Contractor
+2021-10-02 04:48:00.000000000,CLM27750764,📧 INTERNAL NOTE: Legal review requested for CLM27750764. Issue: settlement authority. - Priority: Low,email,Low,Legal Department
+2021-10-07 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Recorded statement taken for CLM27750764. Transcript attached.,email,High,Client
+2021-10-12 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Surveillance completed for CLM27750764. No activity observed.,email,Low,Insurance Company
+2021-10-17 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Reserve review completed for CLM27750764. Current reserve: $0.00.,email,Medium,Insurance Company
+2021-10-22 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Claim CLM27750764 assigned to adjuster Mike Davis.,email,High,Legal Department
+2021-10-27 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Expert witness retained for CLM27750764. Cost: $890.42.,email,Medium,Legal Department
+2021-11-04 14:24:00.000000000,CLM27750764,📧 INTERNAL NOTE: Trial date set for CLM27750764. Court: Circuit Court.,email,Medium,Lawyer
+2021-12-08 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Fraud investigation initiated for CLM27750764. Red flags identified.,email,Low,Medical Provider
+2021-12-08 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Expert witness retained for CLM27750764. Cost: $522.08.,email,Medium,Client
+2021-12-13 10:54:32.727272727,CLM27750764,📧 INTERNAL NOTE: Reserve review completed for CLM27750764. Current reserve: $0.00.,email,Low,Contractor
+2021-12-18 21:49:05.454545454,CLM27750764,📧 INTERNAL NOTE: Trial date set for CLM27750764. Court: District Court. - Follow-up required by legal,email,High,Medical Provider
+2021-12-24 08:43:38.181818181,CLM27750764,📧 INTERNAL NOTE: Mediation scheduled for CLM27750764. Date: 2021-12-24.,email,Low,Adjuster
+2021-12-29 19:38:10.909090909,CLM27750764,📧 INTERNAL NOTE: Mediation scheduled for CLM27750764. Date: 2021-12-29.,email,High,Contractor
+2022-01-04 06:32:43.636363636,CLM27750764,📧 INTERNAL NOTE: Trial date set for CLM27750764. Court: District Court.,email,High,Adjuster
+2022-01-09 17:27:16.363636363,CLM27750764,📧 INTERNAL NOTE: Claim CLM27750764 transferred to special investigations unit.,email,High,Client
+2022-01-15 04:21:49.090909091,CLM27750764,📧 INTERNAL NOTE: Fraud investigation initiated for CLM27750764. Red flags identified.,email,High,Adjuster
+2022-01-20 15:16:21.818181818,CLM27750764,📧 INTERNAL NOTE: Surveillance completed for CLM27750764. No activity observed. - Priority: High,email,Low,Client
+2022-01-26 02:10:54.545454545,CLM27750764,📧 INTERNAL NOTE: Recorded statement taken for CLM27750764. Transcript attached.,email,High,Medical Provider
+2022-01-31 13:05:27.272727272,CLM27750764,📧 INTERNAL NOTE: Settlement authority requested for CLM27750764. Amount: $895.47.,email,Low,Contractor
+2022-02-06 00:00:00.000000000,CLM27750764,📧 INTERNAL NOTE: Fraud investigation initiated for CLM27750764. Red flags identified. - Priority: Medium,email,Medium,Medical Provider
+2022-05-06 00:00:00.000000000,CLM40349564,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM40349564 opened with reserve of $0.00. Police report required. - Priority: Medium,email,Medium,Adjuster
+2022-05-10 06:51:25.714285714,CLM40349564,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM40349564 opened with reserve of $0.00. Police report required. - Priority: Medium,email,Medium,Adjuster
+2022-05-14 13:42:51.428571428,CLM40349564,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM40349564 opened with reserve of $0.00. Police report required.,email,High,Client
+2022-05-18 20:34:17.142857143,CLM40349564,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM40349564. Total value: $835.17.,email,High,Lawyer
+2022-05-23 03:25:42.857142857,CLM40349564,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM40349564. Items covered under personal property endorsement.,email,Medium,Insurance Company
+2022-05-27 10:17:08.571428571,CLM40349564,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM40349564. Total value: $902.00.,email,High,Medical Provider
+2022-05-31 17:08:34.285714286,CLM40349564,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM40349564. Total value: $278.22.,email,High,Medical Provider
+2022-06-05 00:00:00.000000000,CLM40349564,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM40349564. Items covered under personal property endorsement.,email,Medium,Lawyer
+2022-06-05 00:00:00.000000000,CLM40349564,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM40349564. Items covered under personal property endorsement.,email,High,Medical Provider
+2022-06-10 10:54:32.727272727,CLM40349564,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM40349564. Items covered under personal property endorsement. - Priority: Medium,email,Low,Lawyer
+2022-06-15 21:49:05.454545454,CLM40349564,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $567.75 for claim CLM40349564. Payment will be issued within 5 business days.,email,Medium,Client
+2022-06-21 08:43:38.181818181,CLM40349564,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for theft claim CLM40349564. Please send payment to my address. - Follow-up required by supervisor,email,High,Client
+2022-06-26 19:38:10.909090909,CLM40349564,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $667.63 for claim CLM40349564. Payment will be issued within 5 business days. - Priority: High,email,Medium,Contractor
+2022-07-02 06:32:43.636363636,CLM40349564,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for theft claim CLM40349564. Please send payment to my address.,email,Medium,Client
+2022-07-07 17:27:16.363636363,CLM40349564,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $32.27 for claim CLM40349564. Payment will be issued within 5 business days.,email,Medium,Adjuster
+2022-07-13 04:21:49.090909091,CLM40349564,📧 INTERNAL NOTE: Expert witness retained for CLM40349564. Cost: $738.33. - Follow-up required by client,email,High,Insurance Company
+2022-07-18 15:16:21.818181818,CLM40349564,📧 INTERNAL NOTE: Settlement conference for CLM40349564. Attorney attending. - Follow-up required by legal,email,Low,Insurance Company
+2022-07-24 02:10:54.545454545,CLM40349564,📧 INTERNAL NOTE: Settlement conference for CLM40349564. Attorney attending. - Follow-up required by legal,email,High,Insurance Company
+2022-07-29 13:05:27.272727272,CLM40349564,📧 INTERNAL NOTE: Reserve review completed for CLM40349564. Current reserve: $0.00.,email,Low,Legal Department
+2022-08-04 00:00:00.000000000,CLM40349564,📧 INTERNAL NOTE: Fraud investigation initiated for CLM40349564. Red flags identified.,email,Medium,Insurance Company
+2022-08-04 00:00:00.000000000,CLM40349564,📧 INTERNAL NOTE: Claim CLM40349564 assigned to adjuster Lisa Wilson.,email,Low,Medical Provider
+2022-08-10 20:34:17.142857142,CLM40349564,📧 INTERNAL NOTE: Reopening request received for CLM40349564. New damages alleged.,email,Medium,Legal Department
+2022-08-17 17:08:34.285714285,CLM40349564,📧 INTERNAL NOTE: Expert witness retained for CLM40349564. Cost: $497.72.,email,Low,Client
+2022-08-24 13:42:51.428571428,CLM40349564,📧 INTERNAL NOTE: Claim CLM40349564 assigned to adjuster Sarah Johnson. - Priority: Low,email,Medium,Lawyer
+2022-08-31 10:17:08.571428571,CLM40349564,📧 INTERNAL NOTE: Expert witness retained for CLM40349564. Cost: $801.24.,email,Medium,Lawyer
+2022-09-07 06:51:25.714285714,CLM40349564,📧 INTERNAL NOTE: Fraud investigation initiated for CLM40349564. Red flags identified. - Follow-up required by client,email,Low,Contractor
+2022-09-14 03:25:42.857142857,CLM40349564,📧 INTERNAL NOTE: Mediation scheduled for CLM40349564. Date: 2022-09-14.,email,Low,Lawyer
+2022-09-21 00:00:00.000000000,CLM40349564,📧 INTERNAL NOTE: Claim CLM40349564 assigned to adjuster Mike Davis.,email,Medium,Lawyer
+2022-12-18 00:00:00.000000000,CLM40349564,📧 INTERNAL NOTE: Claim CLM40349564 assigned to adjuster Sarah Johnson. - Priority: Low,email,Low,Legal Department
+2022-12-23 10:54:32.727272727,CLM40349564,📧 INTERNAL NOTE: Litigation filed on CLM40349564. Case number: CV-2021-5876.,email,Low,Legal Department
+2021-10-04 00:00:00.000000000,CLM44045666,📧 EMAIL FROM INSURANCE TO CLIENT: Weather damage claim CLM44045666 received. Initial reserve: $0.00. Emergency repairs authorized.,email,Medium,Insurance Company
+2021-10-08 06:51:25.714285714,CLM44045666,📧 EMAIL FROM INSURANCE TO CLIENT: Weather damage claim CLM44045666 received. Initial reserve: $0.00. Emergency repairs authorized. - Priority: Low - Follow-up required by adjuster,email,High,Lawyer
+2021-10-12 13:42:51.428571428,CLM44045666,📧 EMAIL FROM INSURANCE TO CLIENT: Weather claim CLM44045666 established. Reserve: $0.00. Need photos of damage.,email,Medium,Client
+2021-10-16 20:34:17.142857143,CLM44045666,📧 EMAIL FROM INSPECTOR TO ADJUSTER: Weather damage inspection complete for CLM44045666. Damage estimate: $587.88.,email,Low,Contractor
+2021-10-21 03:25:42.857142857,CLM44045666,📧 EMAIL FROM INSPECTOR TO ADJUSTER: Weather damage inspection complete for CLM44045666. Damage estimate: $321.01. - Follow-up required by adjuster,email,High,Medical Provider
+2021-10-25 10:17:08.571428571,CLM44045666,📧 EMAIL FROM INSPECTOR TO ADJUSTER: Weather damage inspection complete for CLM44045666. Damage estimate: $926.07. - Priority: Low,email,High,Lawyer
+2021-10-29 17:08:34.285714286,CLM44045666,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM44045666: $688.53. Can start immediately.,email,High,Legal Department
+2021-11-03 00:00:00.000000000,CLM44045666,📧 EMAIL FROM ADJUSTER TO LEGAL: Weather claim CLM44045666 involves multiple properties. Need legal opinion on coverage.,email,High,Adjuster
+2021-11-03 00:00:00.000000000,CLM44045666,📧 EMAIL FROM ADJUSTER TO LEGAL: Weather claim CLM44045666 involves multiple properties. Need legal opinion on coverage.,email,Medium,Insurance Company
+2021-11-08 10:54:32.727272727,CLM44045666,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM44045666: $555.79. Can start immediately.,email,Low,Insurance Company
+2021-11-13 21:49:05.454545454,CLM44045666,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $96.51 for claim CLM44045666. Contractor can begin repairs.,email,Medium,Legal Department
+2021-11-19 08:43:38.181818181,CLM44045666,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $375.46 for claim CLM44045666. Contractor can begin repairs. - Follow-up required by supervisor,email,Medium,Lawyer
+2021-11-24 19:38:10.909090909,CLM44045666,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $680.77 for claim CLM44045666. Contractor can begin repairs.,email,High,Medical Provider
+2021-11-30 06:32:43.636363636,CLM44045666,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $28.39 for claim CLM44045666. Contractor can begin repairs.,email,Low,Contractor
+2021-12-05 17:27:16.363636363,CLM44045666,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $350.26 for claim CLM44045666. Contractor can begin repairs.,email,Low,Legal Department
+2021-12-11 04:21:49.090909091,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 escalated to supervisor for review.,email,Medium,Insurance Company
+2021-12-16 15:16:21.818181818,CLM44045666,📧 INTERNAL NOTE: Fraud investigation initiated for CLM44045666. Red flags identified.,email,Medium,Contractor
+2021-12-22 02:10:54.545454545,CLM44045666,📧 INTERNAL NOTE: Litigation filed on CLM44045666. Case number: CV-2024-2623. - Priority: Medium,email,High,Insurance Company
+2021-12-27 13:05:27.272727272,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 reopened due to new information. Reserve increased.,email,Low,Legal Department
+2022-01-02 00:00:00.000000000,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 assigned to adjuster John Smith.,email,Medium,Insurance Company
+2022-01-02 00:00:00.000000000,CLM44045666,📧 INTERNAL NOTE: Reopening request received for CLM44045666. New damages alleged.,email,Low,Medical Provider
+2022-02-07 13:42:51.428571428,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 assigned to adjuster John Smith.,email,Medium,Contractor
+2022-03-16 03:25:42.857142857,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 reopened due to new information. Reserve increased. - Follow-up required by legal,email,High,Adjuster
+2022-04-21 17:08:34.285714286,CLM44045666,📧 INTERNAL NOTE: Legal review requested for CLM44045666. Issue: coverage dispute. - Priority: High,email,High,Contractor
+2022-05-28 06:51:25.714285714,CLM44045666,📧 INTERNAL NOTE: Settlement authority requested for CLM44045666. Amount: $129.94.,email,Low,Contractor
+2022-07-03 20:34:17.142857142,CLM44045666,📧 INTERNAL NOTE: Trial date set for CLM44045666. Court: Superior Court. - Follow-up required by legal,email,Medium,Medical Provider
+2022-08-09 10:17:08.571428572,CLM44045666,📧 INTERNAL NOTE: Settlement authority requested for CLM44045666. Amount: $696.73.,email,High,Insurance Company
+2022-09-15 00:00:00.000000000,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 escalated to supervisor for review.,email,Low,Contractor
+2022-10-19 00:00:00.000000000,CLM44045666,📧 INTERNAL NOTE: Trial date set for CLM44045666. Court: Circuit Court. - Priority: Low,email,Medium,Client
+2022-10-24 10:54:32.727272727,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 closed with final payment of $704.05.,email,Low,Legal Department
+2022-10-29 21:49:05.454545454,CLM44045666,📧 INTERNAL NOTE: Trial date set for CLM44045666. Court: Superior Court.,email,Low,Client
+2022-11-04 08:43:38.181818181,CLM44045666,📧 INTERNAL NOTE: Expert witness retained for CLM44045666. Cost: $850.86.,email,High,Contractor
+2022-11-09 19:38:10.909090909,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 reopened due to new information. Reserve increased.,email,Low,Client
+2022-11-15 06:32:43.636363636,CLM44045666,📧 INTERNAL NOTE: Settlement conference for CLM44045666. Attorney attending. - Follow-up required by adjuster,email,Low,Adjuster
+2022-11-20 17:27:16.363636363,CLM44045666,📧 INTERNAL NOTE: Reopening request received for CLM44045666. New damages alleged.,email,High,Contractor
+2022-11-26 04:21:49.090909091,CLM44045666,📧 INTERNAL NOTE: Reopening request received for CLM44045666. New damages alleged.,email,Medium,Lawyer
+2022-12-01 15:16:21.818181818,CLM44045666,📧 INTERNAL NOTE: Fraud investigation initiated for CLM44045666. Red flags identified. - Priority: Medium,email,Medium,Adjuster
+2022-12-07 02:10:54.545454545,CLM44045666,📧 INTERNAL NOTE: Claim CLM44045666 escalated to supervisor for review. - Priority: High,email,Medium,Client
+2021-07-18 00:00:00.000000000,CLM54738553,📧 EMAIL FROM INSURANCE TO CLIENT: Claim CLM54738553 has been opened with initial reserve of $0.00. Our adjuster will contact you within 24 hours to discuss the accident details and begin investigation. - Priority: Low,email,Medium,Medical Provider
+2021-07-18 00:00:00.000000000,CLM54738553,📧 EMAIL FROM INSURANCE TO CLIENT: Claim CLM54738553 has been opened with initial reserve of $0.00. Our adjuster will contact you within 24 hours to discuss the accident details and begin investigation.,email,High,Contractor
+2021-07-22 06:51:25.714285714,CLM54738553,📧 EMAIL FROM INSURANCE TO CLIENT: We have received your auto accident claim CLM54738553. Initial reserve set at $0.00. Please provide police report and any witness statements. - Priority: High,email,Medium,Legal Department
+2021-07-26 13:42:51.428571428,CLM54738553,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00.,email,High,Medical Provider
+2021-07-30 20:34:17.142857143,CLM54738553,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM54738553. Requesting full liability investigation file. - Priority: Medium,email,High,Legal Department
+2021-08-04 03:25:42.857142857,CLM54738553,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM54738553. Requesting full liability investigation file. - Priority: Low,email,High,Medical Provider
+2021-08-08 10:17:08.571428571,CLM54738553,📧 EMAIL FROM ADJUSTER TO LEGAL: Requesting legal review of liability determination for auto claim CLM54738553. Multiple parties involved. - Priority: Medium,email,Low,Legal Department
+2021-08-12 17:08:34.285714286,CLM54738553,📧 EMAIL FROM LEGAL TO ADJUSTER: Liability analysis complete for CLM54738553. Recommend 60/40 split based on witness statements. - Follow-up required by supervisor,email,High,Lawyer
+2021-08-17 00:00:00.000000000,CLM54738553,📧 EMAIL FROM CLIENT TO ADJUSTER: Disagree with liability determination. My lawyer will be contacting you regarding claim CLM54738553.,email,Low,Insurance Company
+2021-08-17 00:00:00.000000000,CLM54738553,📧 EMAIL FROM CLIENT TO ADJUSTER: Disagree with liability determination. My lawyer will be contacting you regarding claim CLM54738553.,email,Low,Client
+2021-08-22 10:54:32.727272727,CLM54738553,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer rejected. My medical bills alone exceed $306.05. Need higher offer.,email,Medium,Legal Department
+2021-08-27 21:49:05.454545454,CLM54738553,📧 EMAIL FROM ADJUSTER TO CLIENT: Settlement offer of $450.41 for claim CLM54738553. Please review and respond within 30 days. - Follow-up required by legal,email,High,Legal Department
+2021-09-01 20:34:17.142857143,CLM54738553,📧 EMAIL FROM LEGAL TO ADJUSTER: Authorized to increase settlement to $509.20 for CLM54738553. Final offer.,email,High,Legal Department
+2021-09-02 08:43:38.181818181,CLM54738553,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting settlement on CLM54738553. Requesting authority to increase offer to $206.40.,email,High,Legal Department
+2021-09-07 19:38:10.909090909,CLM54738553,📧 EMAIL FROM ADJUSTER TO CLIENT: Settlement offer of $766.04 for claim CLM54738553. Please review and respond within 30 days.,email,Medium,Legal Department
+2021-09-13 06:32:43.636363636,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 escalated to supervisor for review. - Priority: High - Follow-up required by client,email,Medium,Client
+2021-09-18 17:27:16.363636363,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 closed with final payment of $742.51. - Priority: Medium,email,Low,Contractor
+2021-09-24 04:21:49.090909091,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 reopened due to new information. Reserve increased. - Priority: Medium,email,Medium,Adjuster
+2021-09-29 15:16:21.818181818,CLM54738553,📧 INTERNAL NOTE: Expert witness retained for CLM54738553. Cost: $393.35. - Follow-up required by supervisor,email,Low,Lawyer
+2021-10-05 02:10:54.545454545,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 reopened due to new information. Reserve increased. - Priority: High - Follow-up required by legal,email,Medium,Legal Department
+2021-10-10 13:05:27.272727272,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 transferred to special investigations unit.,email,Medium,Contractor
+2021-10-16 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 reopened due to new information. Reserve increased. - Priority: Low,email,Low,Contractor
+2021-10-16 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM54738553. Doctor: Dr. Brown.,email,Low,Lawyer
+2021-10-17 17:08:34.285714286,CLM54738553,📧 INTERNAL NOTE: Settlement conference for CLM54738553. Attorney attending.,email,Medium,Client
+2021-10-29 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Surveillance completed for CLM54738553. No activity observed. - Priority: Medium,email,High,Medical Provider
+2021-11-11 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 escalated to supervisor for review. - Priority: Medium - Follow-up required by client,email,High,Legal Department
+2021-11-24 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Settlement conference for CLM54738553. Attorney attending.,email,Medium,Insurance Company
+2021-12-02 13:42:51.428571428,CLM54738553,📧 INTERNAL NOTE: Surveillance completed for CLM54738553. No activity observed. - Priority: Medium,email,Low,Insurance Company
+2021-12-07 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Subrogation opportunity identified for CLM54738553. Third party at fault.,email,High,Insurance Company
+2021-12-20 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Recorded statement taken for CLM54738553. Transcript attached.,email,Medium,Insurance Company
+2022-01-02 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM54738553. Doctor: Dr. Garcia. - Priority: Low,email,Low,Contractor
+2022-01-15 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Subrogation opportunity identified for CLM54738553. Third party at fault. - Priority: Low,email,Medium,Client
+2022-01-17 10:17:08.571428572,CLM54738553,📧 INTERNAL NOTE: Reserve review completed for CLM54738553. Current reserve: $0.00.,email,High,Insurance Company
+2022-03-04 06:51:25.714285716,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 reopened due to new information. Reserve increased. - Priority: Medium - Follow-up required by client,email,High,Client
+2022-04-19 03:25:42.857142856,CLM54738553,📧 INTERNAL NOTE: Fraud investigation initiated for CLM54738553. Red flags identified. - Priority: Medium,email,Medium,Lawyer
+2022-06-04 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM54738553. Doctor: Dr. Martinez.,email,High,Lawyer
+2022-06-04 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Legal review requested for CLM54738553. Issue: settlement authority.,email,Medium,Medical Provider
+2022-06-09 10:54:32.727272727,CLM54738553,📧 INTERNAL NOTE: Expert witness retained for CLM54738553. Cost: $381.18.,email,Low,Adjuster
+2022-06-14 21:49:05.454545454,CLM54738553,📧 INTERNAL NOTE: Reopening request received for CLM54738553. New damages alleged.,email,High,Insurance Company
+2022-06-20 08:43:38.181818181,CLM54738553,📧 INTERNAL NOTE: Expert witness retained for CLM54738553. Cost: $309.32.,email,Medium,Legal Department
+2022-06-25 19:38:10.909090909,CLM54738553,📧 INTERNAL NOTE: Quality review completed for CLM54738553. No issues found.,email,Medium,Insurance Company
+2022-07-01 06:32:43.636363636,CLM54738553,📧 INTERNAL NOTE: Reserve review completed for CLM54738553. Current reserve: $0.00.,email,Medium,Legal Department
+2022-07-06 17:27:16.363636363,CLM54738553,📧 INTERNAL NOTE: Subrogation opportunity identified for CLM54738553. Third party at fault.,email,High,Adjuster
+2022-07-12 04:21:49.090909091,CLM54738553,📧 INTERNAL NOTE: Legal review requested for CLM54738553. Issue: damage assessment. - Priority: High,email,Low,Client
+2022-07-17 15:16:21.818181818,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 closed with final payment of $874.85.,email,Medium,Client
+2022-07-23 02:10:54.545454545,CLM54738553,📧 INTERNAL NOTE: Claim CLM54738553 escalated to supervisor for review.,email,Medium,Adjuster
+2022-07-28 13:05:27.272727272,CLM54738553,📧 INTERNAL NOTE: Mediation scheduled for CLM54738553. Date: 2022-07-28.,email,Low,Adjuster
+2022-08-03 00:00:00.000000000,CLM54738553,📧 INTERNAL NOTE: Expert witness retained for CLM54738553. Cost: $941.80.,email,Low,Medical Provider
+2021-01-26 00:00:00.000000000,CLM58715250,📧 EMAIL FROM INSURANCE TO CLIENT: Auto claim CLM58715250 opened with reserve of $0.00. Please submit photos of vehicle damage and medical bills if applicable. - Priority: High,email,Medium,Contractor
+2021-01-30 06:51:25.714285714,CLM58715250,📧 EMAIL FROM INSURANCE TO CLIENT: We have received your auto accident claim CLM58715250. Initial reserve set at $0.00. Please provide police report and any witness statements. - Follow-up required by supervisor,email,Medium,Legal Department
+2021-02-03 13:42:51.428571428,CLM58715250,📧 EMAIL FROM INSURANCE TO CLIENT: Claim CLM58715250 has been opened with initial reserve of $0.00. Our adjuster will contact you within 24 hours to discuss the accident details and begin investigation. - Priority: Medium,email,Medium,Contractor
+2021-02-07 20:34:17.142857143,CLM58715250,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00. - Priority: High,email,High,Insurance Company
+2021-02-12 03:25:42.857142857,CLM58715250,📧 EMAIL FROM LEGAL TO ADJUSTER: Liability analysis complete for CLM58715250. Recommend 60/40 split based on witness statements.,email,Medium,Adjuster
+2021-02-16 10:17:08.571428571,CLM58715250,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM58715250. Requesting full liability investigation file.,email,Low,Insurance Company
+2021-02-20 17:08:34.285714286,CLM58715250,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM58715250. Requesting full liability investigation file. - Priority: High,email,High,Adjuster
+2021-02-25 00:00:00.000000000,CLM58715250,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM58715250. Requesting full liability investigation file.,email,High,Lawyer
+2021-02-25 00:00:00.000000000,CLM58715250,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM58715250. Requesting full liability investigation file. - Priority: High,email,Low,Contractor
+2021-03-02 10:54:32.727272727,CLM58715250,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00.,email,High,Legal Department
+2021-03-07 21:49:05.454545454,CLM58715250,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting settlement on CLM58715250. Requesting authority to increase offer to $404.73. - Priority: Medium - Follow-up required by legal,email,High,Contractor
+2021-03-13 08:43:38.181818181,CLM58715250,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting settlement on CLM58715250. Requesting authority to increase offer to $229.46.,email,High,Legal Department
+2021-03-18 19:38:10.909090909,CLM58715250,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer rejected. My medical bills alone exceed $506.45. Need higher offer.,email,Low,Insurance Company
+2021-03-24 06:32:43.636363636,CLM58715250,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer rejected. My medical bills alone exceed $576.16. Need higher offer. - Priority: Medium,email,High,Client
+2021-03-29 17:27:16.363636363,CLM58715250,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting settlement on CLM58715250. Requesting authority to increase offer to $456.90. - Priority: High,email,Medium,Legal Department
+2021-04-04 04:21:49.090909091,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 assigned to adjuster Lisa Wilson.,email,Medium,Insurance Company
+2021-04-09 15:16:21.818181818,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 assigned to adjuster Sarah Johnson. - Follow-up required by supervisor,email,High,Legal Department
+2021-04-15 02:10:54.545454545,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 escalated to supervisor for review.,email,Low,Insurance Company
+2021-04-20 13:05:27.272727272,CLM58715250,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM58715250. Doctor: Dr. Lee.,email,Medium,Client
+2021-04-26 00:00:00.000000000,CLM58715250,📧 INTERNAL NOTE: Trial date set for CLM58715250. Court: Superior Court.,email,Medium,Insurance Company
+2021-04-26 00:00:00.000000000,CLM58715250,📧 INTERNAL NOTE: Legal review requested for CLM58715250. Issue: coverage dispute. - Priority: High - Follow-up required by legal,email,Medium,Legal Department
+2021-05-19 03:25:42.857142857,CLM58715250,📧 INTERNAL NOTE: Reserve review completed for CLM58715250. Current reserve: $0.00.,email,Medium,Insurance Company
+2021-06-11 06:51:25.714285714,CLM58715250,📧 INTERNAL NOTE: Fraud investigation initiated for CLM58715250. Red flags identified.,email,Medium,Contractor
+2021-07-04 10:17:08.571428572,CLM58715250,📧 INTERNAL NOTE: Litigation filed on CLM58715250. Case number: CV-2024-3888.,email,High,Adjuster
+2021-07-27 13:42:51.428571429,CLM58715250,📧 INTERNAL NOTE: Recorded statement taken for CLM58715250. Transcript attached. - Priority: Low - Follow-up required by client,email,Low,Medical Provider
+2021-08-19 17:08:34.285714286,CLM58715250,📧 INTERNAL NOTE: Surveillance completed for CLM58715250. No activity observed. - Priority: High,email,Low,Lawyer
+2021-09-11 20:34:17.142857144,CLM58715250,📧 INTERNAL NOTE: Surveillance completed for CLM58715250. No activity observed.,email,High,Medical Provider
+2021-10-05 00:00:00.000000000,CLM58715250,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM58715250. Doctor: Dr. Lee. - Follow-up required by legal,email,Low,Insurance Company
+2021-12-06 00:00:00.000000000,CLM58715250,📧 INTERNAL NOTE: Reserve review completed for CLM58715250. Current reserve: $0.00.,email,Medium,Adjuster
+2021-12-11 10:54:32.727272727,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 reopened due to new information. Reserve increased.,email,High,Legal Department
+2021-12-16 21:49:05.454545454,CLM58715250,📧 INTERNAL NOTE: Mediation scheduled for CLM58715250. Date: 2021-12-16.,email,Medium,Legal Department
+2021-12-22 08:43:38.181818181,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 reopened due to new information. Reserve increased.,email,Medium,Adjuster
+2021-12-27 19:38:10.909090909,CLM58715250,📧 INTERNAL NOTE: Claim CLM58715250 transferred to special investigations unit. - Follow-up required by legal,email,Low,Legal Department
+2022-01-02 06:32:43.636363636,CLM58715250,📧 INTERNAL NOTE: Reserve review completed for CLM58715250. Current reserve: $0.00.,email,High,Client
+2022-01-07 17:27:16.363636363,CLM58715250,📧 INTERNAL NOTE: Quality review completed for CLM58715250. No issues found.,email,High,Legal Department
+2022-01-13 04:21:49.090909091,CLM58715250,📧 INTERNAL NOTE: Legal review requested for CLM58715250. Issue: liability determination.,email,Low,Contractor
+2022-01-18 15:16:21.818181818,CLM58715250,📧 INTERNAL NOTE: Expert witness retained for CLM58715250. Cost: $570.06. - Priority: Low,email,Medium,Adjuster
+2022-12-31 00:00:00.000000000,CLM66755036,📧 EMAIL FROM INSURANCE TO CLIENT: Injury claim CLM66755036 established. Reserve set at $0.00. Medical evaluation required.,email,High,Client
+2023-01-04 06:51:25.714285714,CLM66755036,📧 EMAIL FROM INSURANCE TO CLIENT: Injury claim CLM66755036 established. Reserve set at $0.00. Medical evaluation required.,email,Medium,Legal Department
+2023-01-08 13:42:51.428571428,CLM66755036,📧 EMAIL FROM INSURANCE TO CLIENT: Personal injury claim CLM66755036 opened with medical reserve of $0.00. Please provide all medical records.,email,Medium,Client
+2023-01-12 20:34:17.142857143,CLM66755036,📧 EMAIL FROM LEGAL TO ADJUSTER: Injury claim CLM66755036 analysis complete. Recommend increasing reserve to $635.99.,email,High,Client
+2023-01-17 03:25:42.857142857,CLM66755036,📧 EMAIL FROM ADJUSTER TO LEGAL: Injury claim CLM66755036 involves permanent disability. Need legal review of long-term exposure. - Priority: High,email,Low,Lawyer
+2023-01-21 10:17:08.571428571,CLM66755036,📧 EMAIL FROM MEDICAL PROVIDER TO ADJUSTER: Medical records for CLM66755036 attached. Patient has permanent disability.,email,Medium,Insurance Company
+2023-01-25 17:08:34.285714286,CLM66755036,📧 EMAIL FROM LEGAL TO ADJUSTER: Injury claim CLM66755036 analysis complete. Recommend increasing reserve to $408.88. - Priority: Medium,email,High,Insurance Company
+2023-01-30 00:00:00.000000000,CLM66755036,📧 EMAIL FROM ADJUSTER TO LEGAL: Injury claim CLM66755036 involves permanent disability. Need legal review of long-term exposure.,email,Low,Insurance Company
+2023-01-30 00:00:00.000000000,CLM66755036,📧 EMAIL FROM ADJUSTER TO MEDICAL PROVIDER: Requesting medical records for injury claim CLM66755036. Authorization attached. - Priority: Low,email,Medium,Client
+2023-02-04 10:54:32.727272727,CLM66755036,📧 EMAIL FROM ADJUSTER TO CLIENT: Medical evaluation complete. Reserve increased to $910.90 for claim CLM66755036. - Follow-up required by legal,email,Medium,Legal Department
+2023-02-09 21:49:05.454545454,CLM66755036,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer too low. My medical bills are $87.69 and I have permanent disability. - Follow-up required by adjuster,email,High,Legal Department
+2023-02-15 08:43:38.181818181,CLM66755036,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer too low. My medical bills are $613.20 and I have permanent disability. - Priority: Medium,email,Medium,Client
+2023-02-20 19:38:10.909090909,CLM66755036,📧 EMAIL FROM ADJUSTER TO LEGAL: Client rejecting injury settlement on CLM66755036. Requesting authority for higher offer. - Priority: High,email,High,Adjuster
+2023-02-26 06:32:43.636363636,CLM66755036,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer too low. My medical bills are $763.82 and I have permanent disability.,email,High,Legal Department
+2023-03-03 17:27:16.363636363,CLM66755036,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer too low. My medical bills are $894.20 and I have permanent disability. - Priority: Medium,email,Medium,Contractor
+2023-03-09 04:21:49.090909091,CLM66755036,📧 INTERNAL NOTE: Subrogation opportunity identified for CLM66755036. Third party at fault. - Priority: High,email,High,Legal Department
+2023-03-14 15:16:21.818181818,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 escalated to supervisor for review.,email,High,Legal Department
+2023-03-20 02:10:54.545454545,CLM66755036,📧 INTERNAL NOTE: Surveillance completed for CLM66755036. No activity observed. - Follow-up required by adjuster,email,Low,Lawyer
+2023-03-25 13:05:27.272727272,CLM66755036,📧 INTERNAL NOTE: Fraud investigation initiated for CLM66755036. Red flags identified. - Follow-up required by adjuster,email,Low,Client
+2023-03-31 00:00:00.000000000,CLM66755036,📧 INTERNAL NOTE: Settlement authority requested for CLM66755036. Amount: $552.59. - Priority: Low,email,Medium,Legal Department
+2023-03-31 00:00:00.000000000,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 reopened due to new information. Reserve increased. - Priority: Medium,email,High,Insurance Company
+2023-04-26 20:34:17.142857143,CLM66755036,📧 INTERNAL NOTE: Reopening request received for CLM66755036. New damages alleged. - Follow-up required by adjuster,email,High,Insurance Company
+2023-05-23 17:08:34.285714286,CLM66755036,📧 INTERNAL NOTE: Expert witness retained for CLM66755036. Cost: $351.89.,email,Low,Client
+2023-06-19 13:42:51.428571429,CLM66755036,📧 INTERNAL NOTE: Legal review requested for CLM66755036. Issue: damage assessment.,email,Medium,Medical Provider
+2023-07-16 10:17:08.571428572,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 assigned to adjuster Sarah Johnson.,email,Medium,Client
+2023-08-12 06:51:25.714285716,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 reopened due to new information. Reserve increased. - Priority: Medium,email,Low,Contractor
+2023-09-08 03:25:42.857142858,CLM66755036,📧 INTERNAL NOTE: Trial date set for CLM66755036. Court: District Court.,email,High,Insurance Company
+2023-10-05 00:00:00.000000000,CLM66755036,📧 INTERNAL NOTE: Settlement conference for CLM66755036. Attorney attending.,email,Low,Lawyer
+2023-11-24 00:00:00.000000000,CLM66755036,📧 INTERNAL NOTE: Reopening request received for CLM66755036. New damages alleged. - Priority: High,email,Medium,Adjuster
+2023-11-29 10:54:32.727272727,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 transferred to special investigations unit.,email,High,Insurance Company
+2023-12-04 21:49:05.454545454,CLM66755036,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM66755036. Doctor: Dr. Brown. - Priority: Low - Follow-up required by legal,email,High,Insurance Company
+2023-12-10 08:43:38.181818181,CLM66755036,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM66755036. Doctor: Dr. Brown. - Priority: Medium - Follow-up required by client,email,Medium,Contractor
+2023-12-15 19:38:10.909090909,CLM66755036,📧 INTERNAL NOTE: Claim CLM66755036 escalated to supervisor for review.,email,Medium,Contractor
+2023-12-21 06:32:43.636363636,CLM66755036,📧 INTERNAL NOTE: Reopening request received for CLM66755036. New damages alleged.,email,Medium,Lawyer
+2023-12-26 17:27:16.363636363,CLM66755036,📧 INTERNAL NOTE: Settlement conference for CLM66755036. Attorney attending.,email,Low,Adjuster
+2024-01-01 04:21:49.090909091,CLM66755036,📧 INTERNAL NOTE: Litigation filed on CLM66755036. Case number: CV-2023-6793.,email,Low,Client
+2024-01-06 15:16:21.818181818,CLM66755036,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM66755036. Doctor: Dr. Brown. - Priority: Low - Follow-up required by legal,email,Low,Medical Provider
+2024-01-12 02:10:54.545454545,CLM66755036,📧 INTERNAL NOTE: Reopening request received for CLM66755036. New damages alleged.,email,High,Contractor
+2024-01-17 13:05:27.272727272,CLM66755036,📧 INTERNAL NOTE: Reserve review completed for CLM66755036. Current reserve: $0.00. - Priority: Low - Follow-up required by legal,email,Medium,Contractor
+2024-01-23 00:00:00.000000000,CLM66755036,📧 INTERNAL NOTE: Surveillance completed for CLM66755036. No activity observed.,email,Medium,Insurance Company
+2021-09-24 00:00:00.000000000,CLM80016224,📧 EMAIL FROM INSURANCE TO CLIENT: Auto claim CLM80016224 opened with reserve of $0.00. Please submit photos of vehicle damage and medical bills if applicable.,email,High,Adjuster
+2021-09-28 06:51:25.714285714,CLM80016224,📧 EMAIL FROM INSURANCE TO CLIENT: Auto claim CLM80016224 opened with reserve of $0.00. Please submit photos of vehicle damage and medical bills if applicable. - Priority: Low,email,Medium,Medical Provider
+2021-10-02 13:42:51.428571428,CLM80016224,📧 EMAIL FROM INSURANCE TO CLIENT: Claim CLM80016224 has been opened with initial reserve of $0.00. Our adjuster will contact you within 24 hours to discuss the accident details and begin investigation. - Priority: High,email,Low,Medical Provider
+2021-10-06 20:34:17.142857143,CLM80016224,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00. - Priority: Medium,email,High,Adjuster
+2021-10-11 03:25:42.857142857,CLM80016224,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM80016224. Requesting full liability investigation file. - Priority: Low,email,High,Contractor
+2021-10-15 10:17:08.571428571,CLM80016224,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00. - Follow-up required by legal,email,Low,Contractor
+2021-10-19 17:08:34.285714286,CLM80016224,📧 EMAIL FROM LEGAL TO ADJUSTER: Liability analysis complete for CLM80016224. Recommend 60/40 split based on witness statements. - Priority: High,email,Medium,Medical Provider
+2021-10-24 00:00:00.000000000,CLM80016224,📧 EMAIL FROM ADJUSTER TO LEGAL: Requesting legal review of liability determination for auto claim CLM80016224. Multiple parties involved. - Priority: High,email,Low,Adjuster
+2021-10-24 00:00:00.000000000,CLM80016224,📧 EMAIL FROM ADJUSTER TO CLIENT: Liability investigation complete. We have determined 60% fault on other party. Reserve increased to $0.00.,email,Low,Contractor
+2021-10-29 10:54:32.727272727,CLM80016224,📧 EMAIL FROM LAWYER TO INSURANCE: Representing client on claim CLM80016224. Requesting full liability investigation file.,email,High,Lawyer
+2021-11-03 21:49:05.454545454,CLM80016224,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer rejected. My medical bills alone exceed $29.07. Need higher offer. - Follow-up required by adjuster,email,Medium,Lawyer
+2021-11-09 08:43:38.181818181,CLM80016224,📧 EMAIL FROM ADJUSTER TO CLIENT: Settlement offer of $121.67 for claim CLM80016224. Please review and respond within 30 days.,email,High,Client
+2021-11-14 19:38:10.909090909,CLM80016224,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement offer rejected. My medical bills alone exceed $344.78. Need higher offer. - Follow-up required by adjuster,email,Low,Insurance Company
+2021-11-20 06:32:43.636363636,CLM80016224,📧 EMAIL FROM ADJUSTER TO CLIENT: Settlement offer of $374.28 for claim CLM80016224. Please review and respond within 30 days.,email,Low,Legal Department
+2021-11-25 17:27:16.363636363,CLM80016224,📧 EMAIL FROM LEGAL TO ADJUSTER: Authorized to increase settlement to $69.15 for CLM80016224. Final offer. - Follow-up required by supervisor,email,High,Insurance Company
+2021-12-01 04:21:49.090909091,CLM80016224,📧 INTERNAL NOTE: Recorded statement taken for CLM80016224. Transcript attached.,email,Low,Adjuster
+2021-12-06 15:16:21.818181818,CLM80016224,📧 INTERNAL NOTE: Trial date set for CLM80016224. Court: District Court.,email,Medium,Medical Provider
+2021-12-12 02:10:54.545454545,CLM80016224,📧 INTERNAL NOTE: Claim CLM80016224 assigned to adjuster John Smith. - Follow-up required by adjuster,email,Low,Adjuster
+2021-12-17 13:05:27.272727272,CLM80016224,📧 INTERNAL NOTE: Settlement authority requested for CLM80016224. Amount: $218.22.,email,Low,Lawyer
+2021-12-23 00:00:00.000000000,CLM80016224,📧 INTERNAL NOTE: Claim CLM80016224 closed with final payment of $415.89. - Priority: Medium - Follow-up required by supervisor,email,High,Legal Department
+2021-12-23 00:00:00.000000000,CLM80016224,📧 INTERNAL NOTE: Claim CLM80016224 assigned to adjuster Sarah Johnson. - Follow-up required by legal,email,Low,Lawyer
+2022-01-08 10:17:08.571428571,CLM80016224,📧 INTERNAL NOTE: Settlement authority requested for CLM80016224. Amount: $709.04. - Follow-up required by legal,email,Low,Legal Department
+2022-01-24 20:34:17.142857143,CLM80016224,📧 INTERNAL NOTE: Claim CLM80016224 assigned to adjuster Mike Davis. - Priority: High,email,High,Medical Provider
+2022-02-10 06:51:25.714285714,CLM80016224,📧 INTERNAL NOTE: Subrogation opportunity identified for CLM80016224. Third party at fault.,email,Medium,Contractor
+2022-02-26 17:08:34.285714286,CLM80016224,📧 INTERNAL NOTE: Reserve review completed for CLM80016224. Current reserve: $0.00.,email,High,Adjuster
+2022-03-15 03:25:42.857142858,CLM80016224,📧 INTERNAL NOTE: Recorded statement taken for CLM80016224. Transcript attached.,email,Low,Legal Department
+2022-03-31 13:42:51.428571429,CLM80016224,📧 INTERNAL NOTE: Claim CLM80016224 reopened due to new information. Reserve increased.,email,Low,Insurance Company
+2022-08-09 00:00:00.000000000,CLM94302960,📧 EMAIL FROM INSURANCE TO CLIENT: Weather claim CLM94302960 established. Reserve: $0.00. Need photos of damage.,email,High,Lawyer
+2022-08-13 06:51:25.714285714,CLM94302960,📧 EMAIL FROM INSURANCE TO CLIENT: Weather damage claim CLM94302960 opened with reserve of $0.00. Inspector scheduled. - Priority: High - Follow-up required by adjuster,email,Low,Insurance Company
+2022-08-17 13:42:51.428571428,CLM94302960,📧 EMAIL FROM INSURANCE TO CLIENT: Weather damage claim CLM94302960 opened with reserve of $0.00. Inspector scheduled. - Follow-up required by client,email,Low,Adjuster
+2022-08-21 20:34:17.142857143,CLM94302960,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM94302960: $968.85. Can start immediately.,email,Low,Client
+2022-08-26 03:25:42.857142857,CLM94302960,📧 EMAIL FROM ADJUSTER TO CONTRACTOR: Need emergency repair estimate for weather claim CLM94302960. Roof damage involved.,email,High,Client
+2022-08-30 10:17:08.571428571,CLM94302960,📧 EMAIL FROM INSPECTOR TO ADJUSTER: Weather damage inspection complete for CLM94302960. Damage estimate: $448.54. - Follow-up required by supervisor,email,Low,Adjuster
+2022-09-03 17:08:34.285714286,CLM94302960,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM94302960: $188.08. Can start immediately. - Priority: Low,email,Medium,Insurance Company
+2022-09-08 00:00:00.000000000,CLM94302960,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM94302960: $563.85. Can start immediately.,email,High,Client
+2022-09-08 00:00:00.000000000,CLM94302960,📧 EMAIL FROM CONTRACTOR TO ADJUSTER: Emergency repair estimate for CLM94302960: $927.05. Can start immediately. - Priority: Low,email,Low,Legal Department
+2022-09-13 10:54:32.727272727,CLM94302960,📧 EMAIL FROM INSPECTOR TO ADJUSTER: Weather damage inspection complete for CLM94302960. Damage estimate: $921.26. - Priority: Medium,email,High,Medical Provider
+2022-09-18 21:49:05.454545454,CLM94302960,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $743.51 for claim CLM94302960. Contractor can begin repairs. - Priority: High,email,High,Medical Provider
+2022-09-24 08:43:38.181818181,CLM94302960,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for weather claim CLM94302960. Please coordinate with contractor. - Priority: Medium,email,High,Insurance Company
+2022-09-29 19:38:10.909090909,CLM94302960,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for weather claim CLM94302960. Please coordinate with contractor.,email,High,Insurance Company
+2022-10-05 06:32:43.636363636,CLM94302960,📧 EMAIL FROM ADJUSTER TO CLIENT: Weather damage settlement: $952.33 for claim CLM94302960. Contractor can begin repairs. - Priority: High,email,Low,Adjuster
+2022-10-10 17:27:16.363636363,CLM94302960,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for weather claim CLM94302960. Please coordinate with contractor.,email,High,Lawyer
+2022-10-16 04:21:49.090909091,CLM94302960,📧 INTERNAL NOTE: Settlement authority requested for CLM94302960. Amount: $906.88.,email,Medium,Legal Department
+2022-10-21 15:16:21.818181818,CLM94302960,📧 INTERNAL NOTE: Expert witness retained for CLM94302960. Cost: $40.74.,email,High,Legal Department
+2022-10-27 02:10:54.545454545,CLM94302960,📧 INTERNAL NOTE: Mediation scheduled for CLM94302960. Date: 2022-10-27. - Follow-up required by legal,email,Low,Medical Provider
+2022-11-01 13:05:27.272727272,CLM94302960,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM94302960. Doctor: Dr. Martinez.,email,High,Contractor
+2022-11-07 00:00:00.000000000,CLM94302960,📧 INTERNAL NOTE: Trial date set for CLM94302960. Court: Circuit Court. - Follow-up required by client,email,Low,Client
+2022-11-07 00:00:00.000000000,CLM94302960,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM94302960. Doctor: Dr. Lee. - Priority: High - Follow-up required by client,email,High,Adjuster
+2022-11-18 10:17:08.571428571,CLM94302960,📧 INTERNAL NOTE: Claim CLM94302960 escalated to supervisor for review.,email,Medium,Contractor
+2022-11-29 20:34:17.142857142,CLM94302960,📧 INTERNAL NOTE: Legal review requested for CLM94302960. Issue: damage assessment.,email,Low,Legal Department
+2022-12-11 06:51:25.714285714,CLM94302960,📧 INTERNAL NOTE: Claim CLM94302960 assigned to adjuster Mike Davis. - Priority: High,email,Low,Lawyer
+2020-09-26 00:00:00.000000000,CLM95157821,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM95157821 established. Reserve: $0.00. Need itemized list of stolen property.,email,Low,Medical Provider
+2020-09-26 00:00:00.000000000,CLM95157821,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM95157821 received. Initial reserve: $0.00. Proof of ownership needed.,email,High,Contractor
+2020-09-30 06:51:25.714285714,CLM95157821,📧 EMAIL FROM INSURANCE TO CLIENT: Theft claim CLM95157821 opened with reserve of $0.00. Police report required.,email,High,Legal Department
+2020-10-04 13:42:51.428571428,CLM95157821,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM95157821. Items covered under personal property endorsement. - Priority: High,email,Medium,Client
+2020-10-08 20:34:17.142857143,CLM95157821,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM95157821. Total value: $133.20.,email,Low,Adjuster
+2020-10-13 03:25:42.857142857,CLM95157821,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM95157821. Total value: $109.40. - Priority: Low,email,Low,Adjuster
+2020-10-17 10:17:08.571428571,CLM95157821,📧 EMAIL FROM ADJUSTER TO LEGAL: Theft claim CLM95157821 involves high-value items. Need legal review of coverage limits.,email,Low,Adjuster
+2020-10-21 17:08:34.285714286,CLM95157821,📧 EMAIL FROM CLIENT TO ADJUSTER: Receipts and police report attached for theft claim CLM95157821. Total value: $823.43. - Follow-up required by adjuster,email,Low,Legal Department
+2020-10-26 00:00:00.000000000,CLM95157821,📧 EMAIL FROM LEGAL TO ADJUSTER: Theft coverage analysis complete for CLM95157821. Items covered under personal property endorsement.,email,High,Client
+2020-10-26 00:00:00.000000000,CLM95157821,📧 EMAIL FROM ADJUSTER TO LEGAL: Theft claim CLM95157821 involves high-value items. Need legal review of coverage limits. - Priority: Medium,email,High,Adjuster
+2020-10-31 10:54:32.727272727,CLM95157821,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $541.24 for claim CLM95157821. Payment will be issued within 5 business days.,email,High,Adjuster
+2020-11-05 21:49:05.454545454,CLM95157821,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $168.96 for claim CLM95157821. Payment will be issued within 5 business days.,email,Medium,Legal Department
+2020-11-11 08:43:38.181818181,CLM95157821,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $909.33 for claim CLM95157821. Payment will be issued within 5 business days. - Priority: Medium,email,High,Legal Department
+2020-11-16 19:38:10.909090909,CLM95157821,📧 EMAIL FROM ADJUSTER TO CLIENT: Theft settlement: $503.70 for claim CLM95157821. Payment will be issued within 5 business days. - Priority: Low,email,Low,Medical Provider
+2020-11-22 06:32:43.636363636,CLM95157821,📧 EMAIL FROM CLIENT TO ADJUSTER: Settlement accepted for theft claim CLM95157821. Please send payment to my address. - Priority: Medium,email,High,Insurance Company
+2020-11-26 06:51:25.714285714,CLM95157821,📧 INTERNAL NOTE: Surveillance completed for CLM95157821. No activity observed. - Priority: Low,email,Low,Lawyer
+2020-11-27 17:27:16.363636363,CLM95157821,📧 INTERNAL NOTE: Settlement conference for CLM95157821. Attorney attending.,email,Medium,Insurance Company
+2020-12-03 04:21:49.090909091,CLM95157821,📧 INTERNAL NOTE: Reserve review completed for CLM95157821. Current reserve: $0.00. - Follow-up required by client,email,Low,Medical Provider
+2020-12-08 15:16:21.818181818,CLM95157821,📧 INTERNAL NOTE: Surveillance completed for CLM95157821. No activity observed.,email,Low,Legal Department
+2020-12-14 02:10:54.545454545,CLM95157821,📧 INTERNAL NOTE: Reopening request received for CLM95157821. New damages alleged.,email,Low,Medical Provider
+2020-12-19 13:05:27.272727272,CLM95157821,📧 INTERNAL NOTE: Trial date set for CLM95157821. Court: Superior Court.,email,High,Contractor
+2020-12-25 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Litigation filed on CLM95157821. Case number: CV-2024-5421. - Follow-up required by legal,email,Medium,Medical Provider
+2020-12-25 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Recorded statement taken for CLM95157821. Transcript attached.,email,High,Insurance Company
+2021-01-26 13:42:51.428571428,CLM95157821,📧 INTERNAL NOTE: Trial date set for CLM95157821. Court: Superior Court. - Follow-up required by client,email,Low,Contractor
+2021-02-01 13:42:51.428571428,CLM95157821,📧 INTERNAL NOTE: Litigation filed on CLM95157821. Case number: CV-2021-7032. - Priority: High,email,Medium,Adjuster
+2021-03-12 03:25:42.857142857,CLM95157821,📧 INTERNAL NOTE: Legal review requested for CLM95157821. Issue: damage assessment. - Follow-up required by legal,email,High,Contractor
+2021-03-28 20:34:17.142857142,CLM95157821,📧 INTERNAL NOTE: Legal review requested for CLM95157821. Issue: coverage dispute.,email,Medium,Contractor
+2021-04-19 17:08:34.285714286,CLM95157821,📧 INTERNAL NOTE: Claim CLM95157821 assigned to adjuster Mike Davis.,email,Low,Client
+2021-05-28 06:51:25.714285714,CLM95157821,📧 INTERNAL NOTE: Claim CLM95157821 assigned to adjuster John Smith. - Follow-up required by legal,email,Medium,Legal Department
+2021-05-29 03:25:42.857142856,CLM95157821,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM95157821. Doctor: Dr. Brown.,email,Medium,Contractor
+2021-07-05 20:34:17.142857142,CLM95157821,📧 INTERNAL NOTE: Quality review completed for CLM95157821. No issues found. - Follow-up required by adjuster,email,Low,Adjuster
+2021-07-29 10:17:08.571428568,CLM95157821,📧 INTERNAL NOTE: Legal review requested for CLM95157821. Issue: settlement authority.,email,High,Adjuster
+2021-08-13 10:17:08.571428572,CLM95157821,📧 INTERNAL NOTE: Settlement conference for CLM95157821. Attorney attending. - Follow-up required by client,email,Low,Client
+2021-09-21 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Trial date set for CLM95157821. Court: District Court. - Follow-up required by client,email,Medium,Adjuster
+2021-09-28 17:08:34.285714284,CLM95157821,📧 INTERNAL NOTE: Reopening request received for CLM95157821. New damages alleged.,email,Low,Adjuster
+2021-11-29 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Independent medical exam scheduled for CLM95157821. Doctor: Dr. Brown.,email,Low,Adjuster
+2021-11-29 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Expert witness retained for CLM95157821. Cost: $32.31.,email,Medium,Insurance Company
+2021-12-04 10:54:32.727272727,CLM95157821,📧 INTERNAL NOTE: Claim CLM95157821 assigned to adjuster Sarah Johnson.,email,Medium,Medical Provider
+2021-12-09 21:49:05.454545454,CLM95157821,📧 INTERNAL NOTE: Settlement authority requested for CLM95157821. Amount: $258.61.,email,High,Legal Department
+2021-12-15 08:43:38.181818181,CLM95157821,📧 INTERNAL NOTE: Recorded statement taken for CLM95157821. Transcript attached. - Follow-up required by client,email,Low,Insurance Company
+2021-12-20 19:38:10.909090909,CLM95157821,📧 INTERNAL NOTE: Quality review completed for CLM95157821. No issues found. - Follow-up required by adjuster,email,High,Lawyer
+2021-12-26 06:32:43.636363636,CLM95157821,📧 INTERNAL NOTE: Settlement conference for CLM95157821. Attorney attending. - Follow-up required by client,email,High,Adjuster
+2021-12-31 17:27:16.363636363,CLM95157821,📧 INTERNAL NOTE: Reserve review completed for CLM95157821. Current reserve: $0.00.,email,Low,Lawyer
+2022-01-06 04:21:49.090909091,CLM95157821,📧 INTERNAL NOTE: Claim CLM95157821 escalated to supervisor for review. - Priority: Low,email,Medium,Contractor
+2022-01-11 15:16:21.818181818,CLM95157821,📧 INTERNAL NOTE: Claim CLM95157821 reopened due to new information. Reserve increased.,email,Low,Insurance Company
+2022-01-17 02:10:54.545454545,CLM95157821,📧 INTERNAL NOTE: Settlement conference for CLM95157821. Attorney attending. - Priority: High,email,Medium,Insurance Company
+2022-01-22 13:05:27.272727272,CLM95157821,📧 INTERNAL NOTE: Legal review requested for CLM95157821. Issue: settlement authority. - Priority: High,email,High,Lawyer
+2022-01-28 00:00:00.000000000,CLM95157821,📧 INTERNAL NOTE: Reopening request received for CLM95157821. New damages alleged.,email,Medium,Lawyer

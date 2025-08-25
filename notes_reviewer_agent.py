@@ -98,6 +98,85 @@ class NotesReviewerAgent:
         
         return self.notes_df
     
+    def import_claim_notes(self) -> pd.DataFrame:
+        """
+        Import claim-specific notes from claim_notes.csv file.
+        
+        Returns:
+            pd.DataFrame: DataFrame containing the claim notes data
+        """
+        claim_notes_file = os.path.join(self.data_dir, "claim_notes.csv")
+        if not os.path.exists(claim_notes_file):
+            print(f"Claim notes file not found at: {claim_notes_file}")
+            return pd.DataFrame()
+        
+        try:
+            # Read claim notes CSV
+            df = pd.read_csv(claim_notes_file)
+            
+            # Convert dateNote to datetime
+            df['dateNote'] = pd.to_datetime(df['dateNote'], errors='coerce')
+            
+            # Rename columns to match existing structure for compatibility
+            df = df.rename(columns={
+                'dateNote': 'whenadded',
+                'note': 'note',
+                'clmNum': 'clmNum'
+            })
+            
+            # Add note length and word count for consistency
+            df['note_length'] = df['note'].str.len()
+            df['note_word_count'] = df['note'].str.split().str.len()
+            
+            # Sort by date
+            df = df.sort_values(['clmNum', 'whenadded'])
+            
+            print(f"Successfully imported {len(df)} claim notes from CSV")
+            return df
+            
+        except Exception as e:
+            print(f"Error importing claim notes: {e}")
+            return pd.DataFrame()
+    
+    def get_notes_by_claim(self, clm_num: str) -> pd.DataFrame:
+        """
+        Get all notes for a specific claim number from both sources.
+        
+        Args:
+            clm_num (str): Claim number to search for
+            
+        Returns:
+            pd.DataFrame: Notes for the specified claim from both sources
+        """
+        if self.notes_df is None:
+            raise ValueError("No notes data loaded. Call import_notes() first.")
+        
+        # Get notes from main notes file
+        main_notes = self.notes_df[self.notes_df['clmNum'] == clm_num].copy()
+        
+        # Get notes from claim notes file
+        claim_notes = self.import_claim_notes()
+        if len(claim_notes) > 0:
+            claim_notes = claim_notes[claim_notes['clmNum'] == clm_num].copy()
+        else:
+            claim_notes = pd.DataFrame()
+        
+        # Combine both sources
+        if len(main_notes) > 0 and len(claim_notes) > 0:
+            combined_notes = pd.concat([main_notes, claim_notes], ignore_index=True)
+        elif len(main_notes) > 0:
+            combined_notes = main_notes
+        elif len(claim_notes) > 0:
+            combined_notes = claim_notes
+        else:
+            combined_notes = pd.DataFrame()
+        
+        # Sort by date and remove duplicates if any
+        if len(combined_notes) > 0:
+            combined_notes = combined_notes.sort_values('whenadded').drop_duplicates(subset=['note', 'clmNum', 'whenadded'])
+        
+        return combined_notes
+    
     def _clean_notes_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Clean and preprocess the notes data.
@@ -306,21 +385,7 @@ Please provide a clear, accurate answer based only on the information in these n
         
         return summary
     
-    def get_notes_by_claim(self, clm_num: str) -> pd.DataFrame:
-        """
-        Get all notes for a specific claim number.
-        
-        Args:
-            clm_num (str): Claim number to search for
-            
-        Returns:
-            pd.DataFrame: Notes for the specified claim
-        """
-        if self.notes_df is None:
-            raise ValueError("No notes data loaded. Call import_notes() first.")
-        
-        claim_notes = self.notes_df[self.notes_df['clmNum'] == clm_num].copy()
-        return claim_notes.sort_values('whenadded')
+
     
     def get_notes_by_date_range(self, start_date: str, end_date: str) -> pd.DataFrame:
         """
@@ -410,6 +475,56 @@ Please provide a clear, accurate answer based only on the information in these n
         claim_notes['days_since_first'] = (claim_notes['whenadded'] - first_note_date).dt.days
         
         return claim_notes[['whenadded', 'days_since_first', 'note', 'note_length', 'note_word_count']]
+
+    def get_claims_summary_table(self) -> pd.DataFrame:
+        """
+        Get a summary table of all claims with their current status, reserve amounts, and key dates.
+        
+        Returns:
+            pd.DataFrame: Summary table with claim information
+        """
+        if self.notes_df is None:
+            raise ValueError("No notes data loaded. Call import_notes() first.")
+        
+        try:
+            # Try to load claims data if available
+            claims_file = os.path.join(self.data_dir, "critical_claims.csv")
+            if os.path.exists(claims_file):
+                claims_df = pd.read_csv(claims_file)
+                claims_df['datetxn'] = pd.to_datetime(claims_df['datetxn'])
+                claims_df['dateReceived'] = pd.to_datetime(claims_df['dateReceived'])
+                claims_df['dateCompleted'] = pd.to_datetime(claims_df['dateCompleted'])
+                claims_df['dateReopened'] = pd.to_datetime(claims_df['dateReopened'])
+                claims_df = claims_df.sort_values(['risk_level','clmNum','datetxn'])
+                # Get the latest transaction for each claim
+                latest_transactions = claims_df.groupby(['risk_level','clmNum']).agg({
+                    'clmStatus': 'last',
+                    'reserve': 'last',
+                    'dateReceived': 'first',
+                    'dateCompleted': 'last',
+                    'dateReopened': 'last',
+                    'incurred_cumsum': 'last'
+                }).reset_index()
+                
+                # Rename columns for clarity
+                latest_transactions = latest_transactions.rename(columns={
+                    'reserve': 'current_reserve',
+                    'incurred_cumsum': 'total_incurred'
+                })
+                
+                # Fill NaN values appropriately
+                latest_transactions['dateCompleted'] = latest_transactions['dateCompleted'].fillna(pd.NaT)
+                latest_transactions['dateReopened'] = latest_transactions['dateReopened'].fillna(pd.NaT)
+                
+                return latest_transactions
+            else:
+                # Fallback to notes data if no claims data
+                print("No claims data found. Using notes data instead.")
+                return pd.DataFrame()
+                
+        except Exception as e:
+            print(f"Error loading claims summary: {e}")
+            return pd.DataFrame()
 
 
 def create_dummy_notes_data(n_claims: int = 100, notes_per_claim: int = 5) -> pd.DataFrame:
